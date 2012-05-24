@@ -5,8 +5,8 @@ The URIGen server is distributed as a single Java web archive (war) and can be d
 == Simple apache tomcat example ==
 
   # Download Tomcat from http://tomcat.apache.org and set it up following their instructions. 
-  # Download urigen.war from the Downloads page, place the urigen.war in the web apps fold of your Tomcats home directory. 
-  # Assuming you used tomcat's default settings, your URIGen web interface should be available no http://localhost:8080
+  # Download urigen.war from the Downloads tabs of this page. Place the urigen.war in the webapps folder in your Tomcats home directory. 
+  # Assuming you used tomcat's default settings, your URIGen web interface should be available no http://localhost:8080/urigen
 
 == Setting up the admin account ==
 

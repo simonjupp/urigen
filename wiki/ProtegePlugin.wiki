@@ -10,6 +10,16 @@ Download the org.protege.urigen.jar from the downloads page. Put this jar inside
 
 == URIGen Protege setup ==
 
-To activate URIGen within Protege, open the Protege preferences and navigate to the New Entities Server Tab. 
+To activate URIGen within Protege, open the Protege preferences and navigate to the "New entities server" Tab. 
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/10.png]
+
+  * Check the use URIgen server checkbox. 
+  * Select the add a new URIGen server connection button
+    * Enter the URL to your URIGen server e.g. http://localhost:8080/urigen
+    * Press the connect button, the dropdown box below should fill with a list of available preferences.
+    * Select a preference from the list
+    * Finally enter your API key to access this server. If you don't know your API key, either contact the server admin, or log into the server via the web interface and click on the link to "show me my API key".
+    * Select Apply to activate the URIGen server
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/10.png]

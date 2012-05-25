@@ -27,12 +27,11 @@ Select the "URI creation preferences" tab. From here project admins can create m
   * *New entities base URI* : The base URI from which new URIs will be created
   * *Followed by* : Choose [http://www.w3.org/wiki/HashVsSlash hash or slash ] URIs
   * *Accession types* : 
-    # *Iterative*: Iterative policies simply increment the last accession number by 1 each time a new URI is requested
+    # *Iterative*: Iterative policies simply increment the last accession number by 1 each time a new URI is requested. For an iterative strategy a start and end number must be supplied. -1 can be used to indicate an infinite end number
 
  [http://urigen.googlecode.com/svn/trunk/screenshots/7.png]
 
     # *User range*: User range allows individuals users to have their own iterative stargety, within a given range. e.g. User Paul, can only only request new URIs in the range of 8000 to 9000. 
-For an iterative strategy a start and end number must be supplied. -1 can be used to indicate an infinite end number
 
  [http://urigen.googlecode.com/svn/trunk/screenshots/17.png]
 
@@ -44,4 +43,3 @@ For an iterative strategy a start and end number must be supplied. -1 can be use
 
 
  
-

@@ -32,7 +32,7 @@ If you are working on a n ontology that is linked to aURIGen server, you will no
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/15.png]
 
-If for any reason something goes wring, or the URIGen server is down, Protege will simply assign the random URI to the new entity. You can easily update these at a later date when the URIGen server becomes available again. 
+If for any reason something goes wrong, or the URIGen server is down, Protege will simply assign the random URI to the new entity. You can easily update these at a later date when the URIGen server becomes available again. 
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/16.png]
 

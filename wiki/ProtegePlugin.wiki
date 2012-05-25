@@ -1,0 +1,15 @@
+#summary Protege plugin instruction
+
+= Introduction =
+
+You can use the URIGen Protege 4.1 plugin to access a URIGen server from Protege. You can map an ontology URI to a URIGen server, so that each time a new entity is created in Protege, it will get the next URI in sequence for that ontology. 
+
+== Installation ==
+
+Download the org.protege.urigen.jar from the downloads page. Put this jar inside your Protege home directory, inside the plugins folder. Restart protege. 
+
+== URIGen Protege setup ==
+
+To activate URIGen within Protege, open the Protege preferences and navigate to the New Entities Server Tab. 
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/10.png]

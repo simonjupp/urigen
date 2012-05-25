@@ -11,3 +11,5 @@ The URIGen server is distributed as a single Java web archive (war) and can be d
 == Setting up the admin account ==
 
 For a fresh installation you will need to create the first administrator account. All you need is a valid e-mail address and an internet connection. Login and authentication is handled using browserid.org, just follow the instruction. Once your admin account is created you can create new accounts for other users, and also assign other users to be admins. 
+
+http://code.google.com/p/urigen/source/browse/trunk/screenshots/1.png

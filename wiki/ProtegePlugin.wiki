@@ -23,3 +23,20 @@ To activate URIGen within Protege, open the Protege preferences and navigate to 
     * Select Apply to activate the URIGen server
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/10.png]
+
+
+== Creating new entities ==
+If the URIGen server is live, you can use Protege as normal. If you are working on an ontology with a URI that matches one of the URIGen preferences, all new URI creations will be executed via the URIGen server. 
+
+If you are working on a n ontology that is linked to aURIGen server, you will notice that any new entity is assigned a temporary internal URI. This is randomly generated, once you commit to creating the new entity, Protege will ping the URIGen server to get the next available URI in sequence and use it to create your new entity in your ontology. 
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/15.png]
+
+If for any reason something goes wring, or the URIGen server is down, Protege will simply assign the random URI to the new entity. You can easily update these at a later date when the URIGen server becomes available again. 
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/16.png]
+
+You can see all new entities created by all users back on the URIGen web interface. 
+
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/14.png]

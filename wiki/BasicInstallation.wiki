@@ -36,7 +36,7 @@ Select the "URI creation preferences" tab. From here project admins can create m
  [http://urigen.googlecode.com/svn/trunk/screenshots/17.png]
 
     * *Random*: a random numerical accession is generated
-  * *Accession prefix* : An optional prefix can be assigned to the accession (e.g. ONO\_ would prefix accession 1, making ONO\_1)
+  * *Accession prefix* : An optional prefix can be assigned to the accession (e.g. ONO\\_ would prefix accession 1, making ONO\_1)
   * *Accession suffix* : An optional suffix can be assigned to the accession (e.g. \_ONO would suffix accession 1, making 1\_ONO)
   * *Digit count* : The number of digits in the numerical accession. (e.g is the accession was 1, and number of digits is set to 7, then the final accession created would be 0000001)
 

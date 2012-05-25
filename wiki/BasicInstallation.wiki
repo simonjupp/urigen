@@ -10,6 +10,21 @@ The URIGen server is distributed as a single Java web archive (war) and can be d
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/1.png]
 
-== Setting up the admin account ==
+== Setting up the admin account and creating users ==
 
-For a fresh installation you will need to create the first administrator account. All you need is a valid e-mail address and an internet connection. Login and authentication is handled using browserid.org, just follow the instruction. Once your admin account is created you can create new accounts for other users, and also assign other users to be admins. 
+For a fresh installation you will need to create the first administrator account. All you need is a valid e-mail address and an internet connection. Login and authentication is handled using browserid.org, just follow the instruction. Once your admin account is created you can create new accounts for other users, and also assign other users to be admins. Note, each user is assigned a unique API that must be used to access the URIGen service from external applications. 
+
+Users can access their own API keys if the log onto the URIGen server, admins can see everyones API key. 
+
+[http://urigen.googlecode.com/svn/trunk/screenshots/6.png]
+
+== Creating new URI preferences ==
+
+Select the "URI creation preferences" tab. From here project admins can create multiple URI creation preferences. The following image shows a basic URI creation policy. 
+  * *Ontology name* : Any name to identify your ontology
+  * *Ontology URL* : This is a URL that points to the ontology's physical locations. URIGen can be configured to use this ontology as a reference to ensure newly created URIs don't clash with existing URIs.
+  * *Ontology URI* : This is the actual ontology URI. This also acts as the unique identifier for this preference on this server
+  * *New entities base URI* : The base URI from with new URIs will be created
+
+ 
+[http://urigen.googlecode.com/svn/trunk/screenshots/7.png]

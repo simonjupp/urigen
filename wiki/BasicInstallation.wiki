@@ -27,15 +27,15 @@ Select the "URI creation preferences" tab. From here project admins can create m
   * *New entities base URI* : The base URI from which new URIs will be created
   * *Followed by* : Choose [http://www.w3.org/wiki/HashVsSlash hash or slash ] URIs
   * *Accession types* : 
-    # *Iterative*: Iterative policies simply increment the last accession number by 1 each time a new URI is requested. For an iterative strategy a start and end number must be supplied. -1 can be used to indicate an infinite end number
+    * *Iterative*: Iterative policies simply increment the last accession number by 1 each time a new URI is requested. For an iterative strategy a start and end number must be supplied. -1 can be used to indicate an infinite end number
 
  [http://urigen.googlecode.com/svn/trunk/screenshots/7.png]
 
-    # *User range*: User range allows individuals users to have their own iterative stargety, within a given range. e.g. User Paul, can only only request new URIs in the range of 8000 to 9000. 
+    * *User range*: User range allows individuals users to have their own iterative stargety, within a given range. e.g. User Paul, can only only request new URIs in the range of 8000 to 9000. 
 
  [http://urigen.googlecode.com/svn/trunk/screenshots/17.png]
 
-    # *Random*: a random numerical accession is generated
+    * *Random*: a random numerical accession is generated
   * *Accession prefix* : An optional prefix can be assigned to the accession (e.g. ONO_ would prefix accession 1, making ONO_1)
   * *Accession suffix* : An optional suffix can be assigned to the accession (e.g. _ONO would suffix accession 1, making 1_ONO)
   * *Digit count* : The number of digits in the numerical accession. (e.g is the accession was 1, and number of digits is set to 7, then the final accession created would be 0000001)

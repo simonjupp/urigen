@@ -22,7 +22,7 @@ To activate URIGen within Protege, open the Protege preferences and navigate to 
     * Finally enter your API key to access this server. If you don't know your API key, either contact the server admin, or log into the server via the web interface and click on the link to "show me my API key".
     * Select Apply to activate the URIGen server
 
-[http://urigen.googlecode.com/svn/trunk/screenshots/10.png]
+[http://urigen.googlecode.com/svn/trunk/screenshots/11.png]
 
 
 == Creating new entities ==

@@ -24,7 +24,6 @@ Select the "URI creation preferences" tab. From here project admins can create m
   * *Ontology name* : Any name to identify your ontology
   * *Ontology URL* : This is a URL that points to the ontology's physical locations. URIGen can be configured to use this ontology as a reference to ensure newly created URIs don't clash with existing URIs.
   * *Ontology URI* : This is the actual ontology URI. This also acts as the unique identifier for this preference on this server
-  * *New entities base URI* : The base URI from with new URIs will be created
-
- 
-[http://urigen.googlecode.com/svn/trunk/screenshots/7.png]
+  * *New entities base URI* : The base URI from which new URIs will be created
+  * *Followed by* : Choose [http://www.w3.org/wiki/HashVsSlash hash or slash ] URIs
+ [http://urigen.googlecode.com/svn/trunk/screenshots/7.png]

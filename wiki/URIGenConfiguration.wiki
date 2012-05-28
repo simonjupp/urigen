@@ -1,0 +1,7 @@
+#summary Some additional configuration options for URIGen
+
+= URIGen database location =
+
+URIGen is backed by a java based relational database called [http://hsqldb.org HSQLDB]. The database is stored on the URIGen servers filesystem. By default, when URIGen is unpacked by tomcat it will attempt to install this database inside a hidden folder in the users home directory e.g. ~/.urigen
+
+You can change this location by setting the urigen.home.directory property. 

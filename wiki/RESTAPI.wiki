@@ -8,6 +8,27 @@ Any edit function such as create, update and delete require the API KEY of an ad
 
 URIGen uses JSON objects for communications to and from the server. The Java API contains a range of POJOs for interacting with the REST API programatically from Java. 
 
+= URI generation API =
+
+  * Get all generated URIs
+{{{
+curl -X GET -v /urigen/api/uris
+}}}
+
+  * request new URI
+{{{
+curl -X POST --v -d @request.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+}}}
+{{{
+request.json = 
+
+{
+ "userId":1,
+"preferencesId":2,
+"originalUri":"http://urigen_local_uri/679f696d-22d1-4351-a81b-497b930a2268",
+"label":"some label"
+}}}
+
 = Preferences API =
   * Get all preferences
 {{{

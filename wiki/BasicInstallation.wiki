@@ -1,3 +1,5 @@
+#summary Quick start guide for installing a URIGen server
+
 = URIGen installation  =
 
 The URIGen server is distributed as a single Java web archive (war) and can be deployed in any Java compliant application server. 

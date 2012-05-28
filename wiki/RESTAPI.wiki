@@ -27,6 +27,7 @@ request.json =
 "preferencesId":2,
 "originalUri":"http://urigen_local_uri/679f696d-22d1-4351-a81b-497b930a2268",
 "label":"some label"
+}
 }}}
 
 = Preferences API =

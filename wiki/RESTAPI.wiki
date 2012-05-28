@@ -1,12 +1,19 @@
-#summary REST API
+#summary REST API to the URIGen system
 
 = Introduction =
 
-REST API docs go here...
+URIGen has a REST API that supports most of the CRUD functions for maintaining the URIGen database. The REST API is accessible by appending *api* to the end of the URIGen default URL. All the following examples assume interaction with the REST API using curl, and a server running on localhost:8080
+ 
 
-= Details =
+= Users =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Get all users
+
+{{{
+curl -X GET -v http://localhost:8080/urigen/api/users
+}}}
+
+  * Get user by user id
+{{{
+curl -X GET -v http://localhost:8080/urigen/api/{userid}
+}}}

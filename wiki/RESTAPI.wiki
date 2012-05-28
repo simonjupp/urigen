@@ -27,4 +27,10 @@ curl -X POST --v -d @user.json -H "Content-Type: application/json" /urigen/api/u
 user.json = {"userName":"paul","email":"paul@email.com","admin":false}
 }}}
 
-
+  * Update a user
+{{{
+curl -X PUT --v -d @user.json -H "Content-Type: application/json" /urigen/api/users
+}}}
+{{{
+user.json = {"id":1,"userName":"paul","email":"paulsnewemail@anotheremail.com","admin":false}
+}}}

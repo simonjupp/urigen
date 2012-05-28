@@ -4,6 +4,8 @@
 
 URIGen has a REST API that supports most of the CRUD functions for maintaining the URIGen database. The REST API is accessible by appending *api* to the end of the URIGen default URL. All the following examples assume interaction with the REST API using curl, and a server running on localhost:8080
  
+Any edit function such as create, update and delete require the API KEY of an administrator. 
+
 URIGen uses JSON objects for communications to and from the server. The Java API contains a range of POJOs for interacting with the REST API programatically from Java. 
 
 = Users =
@@ -21,7 +23,7 @@ curl -X GET -v /urigen/api/{userid}
 
   * Create new user
 {{{
-curl -X POST --v -d @user.json -H "Content-Type: application/json" /urigen/api/users
+curl -X POST --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
 }}}
 {{{
 user.json = {"userName":"paul","email":"paul@email.com","admin":false}
@@ -29,8 +31,15 @@ user.json = {"userName":"paul","email":"paul@email.com","admin":false}
 
   * Update a user
 {{{
-curl -X PUT --v -d @user.json -H "Content-Type: application/json" /urigen/api/users
+curl -X PUT --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
 }}}
 {{{
 user.json = {"id":1,"userName":"paul","email":"paulsnewemail@anotheremail.com","admin":false}
+}}}
+   * Delete a user
+{{{
+curl -X DELETE --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+}}}
+{{{
+user.json = {"id":1}
 }}}

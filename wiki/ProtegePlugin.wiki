@@ -43,10 +43,10 @@ You can see all new entities created by all users back on the URIGen web interfa
 
 == Protege new entities preferences ==
 
-If your active ontology is not managed by one of your URIGen repositories or your network connection to the URIGen server is down, Protege will revert to your default 'New entities' policy. 
+If your active ontology is not managed by one of your URIGen repositories, or your network connection to the URIGen server is down, Protege will revert to your default 'New entities' policy. 
 
-If you are working on active ontology that is managed by URIGen, but either an error occurred communicating with the server, or the server was down, Protege will assign a random URI to your new entity. Currently of the from: http://urigen_local_uri/ + random string
+If you are working on an active ontology that is managed by URIGen, but an error occurred communicating with the server, or the server was down, Protege will assign a random URI to your new entity currently of the from: http://urigen_local_uri/ + random string. You can always generate new URIs when you get back online, and refactor any temporary URIs to the new generated URIs. 
 
 == Label rendering ==
 
-If you are using some auto id system for new entities, you often want to assign a label on creation. You can set Protege and URIGen up so that when you create a new entity, you only have to enter the label and the URI creation happens or you. For this to work, you need to have your preferences configured correctly. In the Protege preferences, under the 'New entities' tab, inside the 'Entity label' box, make sure "Create label from user-supplied name" is checked. 
+If you are using some auto id system for new entities, you often want to assign a label on creation. You can set Protege and URIGen up so that when you create a new entity, you only have to enter the label and the URI creation happens for you. For this to work, you need to have your preferences configured correctly. In the Protege preferences, under the 'New entities' tab, inside the 'Entity label' box, make sure "Create label from user-supplied name" is checked. 

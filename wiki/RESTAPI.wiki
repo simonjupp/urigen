@@ -9,9 +9,7 @@ Any edit function such as create, update and delete require the API KEY of an ad
 URIGen uses JSON objects for communications to and from the server. The Java API contains a range of POJOs for interacting with the REST API programatically from Java. 
 
 = Users =
-
   * Get all users
-
 {{{
 curl -X GET -v /urigen/api/users
 }}}
@@ -36,7 +34,8 @@ curl -X PUT --v -d @user.json -H "Content-Type: application/json" /urigen/api/us
 {{{
 user.json = {"id":1,"userName":"paul","email":"paulsnewemail@anotheremail.com","admin":false}
 }}}
-   * Delete a user
+ 
+  * Delete a user
 {{{
 curl -X DELETE --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
 }}}

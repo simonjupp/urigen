@@ -17,7 +17,7 @@ curl -X GET -v /urigen/api/uris
 
   * request new URI
 {{{
-curl -X POST --v -d @request.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+curl -X POST --v -d @request.json -H "Content-Type: application/json" /urigen/api/uris?restApiKey={apikey}
 }}}
 {{{
 request.json = 

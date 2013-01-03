@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <display-name>URI Manager</display-name>
+    <description>
+        Application server for managing ontology URI creation
+    </description>
+
+    <!--Define configuration to load-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            WEB-INF/urigen-dao.xml
+            WEB-INF/urigen-service.xml
+        </param-value>
+    </context-param>
+
+    <!--Define Servlets -->
+    <servlet>
+        <servlet-name>urigen</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!--Define servlet mappings -->
+    <servlet-mapping>
+        <servlet-name>urigen</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- listener to load context at startup -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+
+</web-app>

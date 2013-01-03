@@ -1,0 +1,100 @@
+
+#contents {
+    min-width: 1000px;
+}
+
+#user-greeting {
+    float: right; padding-left: 15px; display: none;
+}
+
+#guest-greeting {
+    float: right; padding-left: 15px; display: none;
+}
+
+#1st-time-login {
+    float: right; padding-left: 15px; display: none;
+}
+
+#tabs {
+width:1000px;
+min-height: 600px;
+}
+
+#backgroundOverlay{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+height:100%;
+width:100%;
+top:0;
+left:0;
+background:#000000;
+border:1px solid #cecece;
+z-index:1;
+}
+
+
+#register-user-popup{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+height:384px;
+width:408px;
+background:#FFFFFF;
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+
+#prefs-panel-popup{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+background:#FFFFFF;
+border:2px solid #cecece;
+z-index:3;
+padding:12px;
+font-size:13px;
+}
+
+
+#login-user-popup{
+display:none;
+position:fixed;
+_position:absolute; /* hack for internet explorer 6*/
+height:384px;
+width:408px;
+background:#FFFFFF;
+border:2px solid #cecece;
+z-index:3;
+padding:12px;
+font-size:13px;
+}
+
+
+/* tables */
+
+/* goci-details table styling and ordering elements */
+table.urigen-details-table {
+    border-spacing: 0;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+
+table.urigen-details-table tbody tr td {
+    padding: 4px;
+    vertical-align: top;
+}
+
+/* goci-details table background color for row striping */
+/* NOTE: this is the only place that Goci explicitly declares a color, everywhere else jQuery UI themes are used */
+table.urigen-details-table tbody tr.even {
+    background-color: #EEF5F5;
+}
+
+div.dataTables_filter {
+
+    float:right;
+}

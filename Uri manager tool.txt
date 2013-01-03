@@ -1,0 +1,105 @@
+Uri manager tool.
+
+Requirements. 
+
+*	Servlet that manages the creation of entity URIs for a developing ontology
+*	Input: ontology id + existing uri + label (optional) + user id
+*	Returns: ontology URI / set of uri mappings
+
+Preferences are managed server side.  Can have multiple preferences for a server 
+instance. 
+
+Use in memory database to manage id creation. Id?s can be locked. We want to 
+capture provenance about who requested and when.
+
+Preferences:
+
+Attributes:
+Ontology id + Ontology name
+Latest public ontology URI/URL
+Base URI (defaults to ontology id)
+Hash/Slash/colon (defaults to #)
+Username or auto generated
+Autoid: numeric(random)/numeric(iterative)/unique and meaning less
+Prefix
+Suffix
+Digit count
+Start
+End
+Update check time
+
+In memory database
+
+Table 1 Ð users
+user id
+User name
+e-mail
+password
+
+Table 2 Ð Ontology preferences
+Ontology Id
+Ontology uri
+Ontology name
+Preferences file id
+Ontology physical uri
+Last checked
+MD5 checksum
+
+Table 3 Ð
+Ondology id
+User id
+Term uri
+Term label
+Timestamp
+locked
+
+
+Flow.
+
+Servlet request for new terms comes in.
+1.	Validate user and check the ontology is know and we have preference file 
+for it.
+2.	Using preferences generate new URI. 
+a.	Need to check against actual ontology?
+3.	Id generated then written to database
+4.	New id mapping returned to user
+
+
+Objects/ Beans.
+
+UserBean Ð Represents a user. Should be able to add new users. Users are linked 
+to terms they requested. 
+
+NewEntityURIBean Ð Represents a new requested new URI object. Has mapping 
+information, user info and source ontology info. 
+
+
+Actions.
+
+Create a new user
+	Input: user details
+	Return success/fail
+
+Create a new preference
+	Input: User, preferences
+	Return: success/fail
+			Must be a user. Ontology must be accessible
+			Existing preferences don?t already exit (based on ontology uri)
+
+Generate a new URI. 
+	Input: User, Preferences id (ontology id),
+	Optional In: Label, Comment, Existing URI to be mapped
+	Return: new URI
+			Must not exist in latest version of accessible ontology
+			Or already exist for this preference in the DB.
+
+Other services:
+
+Get preferences: return json representation of json
+Edit preferences: Update a preference
+Get a user: return user details
+Edit a user:
+Delete a user:
+
+
+

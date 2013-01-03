@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <context:property-placeholder location="classpath:urigen.properties" />
+
+
+    <bean name="urigenManager" class="uk.ac.ebi.fgpt.urigen.impl.UrigenManagerImpl">
+        <property name="preferenceDAO" ref="preferenceDAO" />
+        <property name="userDAO" ref="userDAO" />
+        <property name="ontoloyDAO" ref="ontologyDAO" />
+        <property name="urigenEntityDAO" ref="entityDAO" />
+        <!--<property name="userRangeDAO" ref="rangeDAO" />-->
+        <!--<property name="defaultPreferencesTemplate" ref="defaultPreferenceTemplate" />-->
+    </bean>
+
+
+    <!-- User service -->
+    <bean name="userService" class="uk.ac.ebi.fgpt.urigen.service.DefaultUrigenUserService">
+        <property name="urigenManager" ref="urigenManager" />
+    </bean>
+
+    <!-- Prefs service -->
+    <bean name="preferenceService" class="uk.ac.ebi.fgpt.urigen.service.DefaultPreferencesService">
+        <property name="urigenManager" ref="urigenManager" />
+    </bean>
+
+    <!-- Urigen service -->
+    <bean name="uriCreationService" class="uk.ac.ebi.fgpt.urigen.service.DefaultUriCreationService">
+        <property name="urigenManager" ref="urigenManager" />
+    </bean>
+
+
+</beans>

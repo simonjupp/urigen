@@ -15,7 +15,7 @@ The URIGen server is distributed as a single Java web archive (war) and can be d
 
 == URIGen default database ==
 
-When the URIGen server starts up it cretaes an internal database. This database will by default be built in the users home directory in a folder called ~/.urigen. If you want to use a different location you can set the system property urigen.home.directory or set the environment variable URIGEN_HOME.
+When the URIGen server starts up it creates an internal database. This database will by default be built in the users home directory in a folder called ~/.urigen. If you want to use a different location you can set the system property urigen.home.directory or set the environment variable URIGEN_HOME.
 
 == Setting up the admin account and creating users ==
 

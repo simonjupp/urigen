@@ -2,7 +2,8 @@
 
 = URIGen installation  =
 
-The URIGen server is distributed as a single Java web archive (war) and can be deployed in any Java compliant application server. 
+The URIGen server is distributed as a single Java web archive (war) and can be deployed in any Java compliant application server. If you have maven you can start a server instance using the maven jetty plugin. 
+
  
 == Simple apache tomcat example ==
 
@@ -11,6 +12,10 @@ The URIGen server is distributed as a single Java web archive (war) and can be d
   # Assuming you used tomcat's default settings, your URIGen web interface should be available at http://localhost:8080/urigen
 
 [http://urigen.googlecode.com/svn/trunk/screenshots/1.png]
+
+== URIGen default database
+
+When the URIGen server starts up it cretaes an internal database. This database will by default be built in the users home directory in a folder called ~/.urigen. If you want to use a different location you can set the system property urigen.home.directory or set the environment variable URIGEN_HOME.
 
 == Setting up the admin account and creating users ==
 

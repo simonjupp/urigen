@@ -1,0 +1,54 @@
+# URIGen installation #
+
+The URIGen server is distributed as a single Java web archive (war) and can be deployed in any Java compliant application server. If you have maven you can start a server instance using the maven jetty plugin.
+
+
+## Simple apache tomcat example ##
+
+  1. Get tomcat from http://tomcat.apache.org and follow the instructions for starting it up.
+  1. Download urigen.war from the Downloads tabs of this page. Place the urigen.war in the webapps folder in tomcat home directory.
+  1. Assuming you used tomcat's default settings, your URIGen web interface should be available at http://localhost:8080/urigen
+
+![http://urigen.googlecode.com/svn/trunk/screenshots/1.png](http://urigen.googlecode.com/svn/trunk/screenshots/1.png)
+
+## URIGen default database ##
+
+When the URIGen server starts up it creates an internal database. This database will by default be built in the users home directory in a folder called ~/.urigen. If you want to use a different location you can set the system property urigen.home.directory or set the environment variable URIGEN\_HOME.
+
+## Setting up the admin account and creating users ##
+
+For a fresh installation you will need to create the first administrator account. All you need is a valid e-mail address and an internet connection. Login and authentication is handled using browserid.org, just follow the instruction. Once your admin account is created you can create new accounts for other users, and also assign other users to be admins. Note, each user is assigned a unique API that must be used to access the URIGen service from external applications.
+
+Users can access their own API keys if the log onto the URIGen server, admins can see everyones API key.
+
+![http://urigen.googlecode.com/svn/trunk/screenshots/6.png](http://urigen.googlecode.com/svn/trunk/screenshots/6.png)
+
+## Creating new URI preferences ##
+
+Select the "URI creation preferences" tab. From here project admins can create multiple URI creation preferences. The following image shows a basic URI creation policy.
+  * **Ontology name** : Any name to identify your ontology
+  * **Ontology URL** : This is a URL that points to the ontology's physical locations. URIGen can be configured to use this ontology as a reference to ensure newly created URIs don't clash with existing URIs.
+  * **Ontology URI** : This is the actual ontology URI. This also acts as the unique identifier for this preference on this server
+  * **New entities base URI** : The base URI from which new URIs will be created
+  * **Followed by** : Choose [hash or slash ](http://www.w3.org/wiki/HashVsSlash) URIs
+  * **Accession types** :
+    * **Iterative**: Iterative policies simply increment the last accession number by 1 each time a new URI is requested. For an iterative strategy a start and end number must be supplied. -1 can be used to indicate an infinite end number
+
+> ![http://urigen.googlecode.com/svn/trunk/screenshots/7.png](http://urigen.googlecode.com/svn/trunk/screenshots/7.png)
+
+  * **User range**: User range allows individuals users to have their own iterative stargety, within a given range. e.g. User Paul, can only only request new URIs in the range of 8000 to 9000.
+
+> ![http://urigen.googlecode.com/svn/trunk/screenshots/17.png](http://urigen.googlecode.com/svn/trunk/screenshots/17.png)
+
+  * **Random**: a random numerical accession is generated
+  * **Accession prefix** : An optional prefix can be assigned to the accession (e.g. ONO- would prefix accession 1, making ONO-1)
+  * **Accession suffix** : An optional suffix can be assigned to the accession (e.g. -ONO would suffix accession 1, making 1-ONO)
+  * **Digit count** : The number of digits in the numerical accession. (e.g is the accession was 1, and number of digits is set to 7, then the final accession created would be 0000001)
+
+## Requesting a new URI ##
+
+At this point your preference is ready to use. New URIs can be requested from the web interface using the "Generate URI button", or optionally using the [Java API](JAVAAPI.md), the [REST API](RESTAPI.md), or from the [Protege 4 plugin](ProtegePlugin.md).
+
+> ![http://urigen.googlecode.com/svn/trunk/screenshots/8.png](http://urigen.googlecode.com/svn/trunk/screenshots/8.png)
+> ![http://urigen.googlecode.com/svn/trunk/screenshots/9.png](http://urigen.googlecode.com/svn/trunk/screenshots/9.png)
+

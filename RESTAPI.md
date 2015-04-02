@@ -1,0 +1,123 @@
+# Introduction #
+
+URIGen has a REST API that supports most of the CRUD functions for maintaining the URIGen database. The REST API is accessible by appending **api** to the end of the URIGen default URL. All the following examples assume interaction with the REST API using curl, and a server running on localhost:8080
+
+Any edit function such as create, update and delete require the API KEY of an administrator.
+
+URIGen uses JSON objects for communications to and from the server. The Java API contains a range of POJOs for interacting with the REST API programatically from Java.
+
+# URI generation API #
+
+  * Get all generated URIs
+```
+curl -X GET -v /urigen/api/uris
+```
+
+  * request new URI
+```
+curl -X POST --v -d @request.json -H "Content-Type: application/json" /urigen/api/uris?restApiKey={apikey}
+```
+```
+request.json = 
+
+{
+ "userId":1,
+"preferencesId":2,
+"originalUri":"http://urigen_local_uri/679f696d-22d1-4351-a81b-497b930a2268",
+"label":"some label"
+}
+```
+
+# Preferences API #
+  * Get all preferences
+```
+curl -X GET -v /urigen/api/preferences
+```
+
+  * Get preference by preference id
+```
+curl -X GET -v /preferences/api/{preferenceid}
+```
+
+  * Create new preference
+```
+curl -X POST --v -d @preferences.json -H "Content-Type: application/json" /urigen/api/preferences?restApiKey={apikey}
+```
+```
+preferences.json = 
+
+{
+"ontologyName":"SWO",
+"autoIDGenerator":{"id":"uk.ac.ebi.fgpt.urigen.dao.IterativeIdGenerator",
+"description":"Iterative"},
+"ontologyUri":"http://www.ebi.ac.uk/swo/data/",
+"ontologyPhysicalUri":"http://theswo.svn.sourceforge.net/swo/swo_data.owl",
+"baseUri":"http://www.ebi.ac.uk/swo/data",
+"separator":"/",
+"prefix":"SWO_",
+"suffix":"",
+"autoIdDigitCount":7,
+"autoIdStart":3000000,
+"autoIdEnd":4000000,
+}
+
+```
+
+  * Update a preference
+```
+curl -X PUT --v -d @preference.json -H "Content-Type: application/json" /urigen/api/preferences?restApiKey={apikey}
+```
+```
+preference.json = 
+{
+"id":1,
+"ontologyName":"SWO data",
+}
+```
+
+  * Delete a preference
+```
+curl -X DELETE --v -d @preference.json -H "Content-Type: application/json" /urigen/api/preferences?restApiKey={apikey}
+```
+```
+preference.json = 
+{
+"id":1
+}
+```
+
+
+# Users API #
+  * Get all users
+```
+curl -X GET -v /urigen/api/users
+```
+
+  * Get user by user id
+```
+curl -X GET -v /urigen/api/{userid}
+```
+
+  * Create new user
+```
+curl -X POST --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+```
+```
+user.json = {"userName":"paul","email":"paul@email.com","admin":false}
+```
+
+  * Update a user
+```
+curl -X PUT --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+```
+```
+user.json = {"id":1,"userName":"paul","email":"paulsnewemail@anotheremail.com","admin":false}
+```
+
+  * Delete a user
+```
+curl -X DELETE --v -d @user.json -H "Content-Type: application/json" /urigen/api/users?restApiKey={apikey}
+```
+```
+user.json = {"id":1}
+```

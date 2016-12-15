@@ -20,6 +20,13 @@ width:1000px;
 min-height: 600px;
 }
 
+#invalid-login {
+    float: right;
+    margin-top: 30px;
+    width: 400px;
+    margin-right: -100px;
+}
+
 #backgroundOverlay{
 display:none;
 position:fixed;

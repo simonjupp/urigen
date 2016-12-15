@@ -19,6 +19,14 @@
     </bean>
 
 
+    <!-- GitGub service -->
+    <bean name="gitHubService" class="uk.ac.ebi.fgpt.urigen.service.GitHubIdService">
+        <constructor-arg name="clientId" value="${urigen.github.clientId}" />
+        <constructor-arg name="secretId" value="${urigen.github.secretId}" />
+        <constructor-arg name="redirectUrl" value="${urigen.github.redirectUrl}" />
+    </bean>
+
+
     <!-- User service -->
     <bean name="userService" class="uk.ac.ebi.fgpt.urigen.service.DefaultUrigenUserService">
         <property name="urigenManager" ref="urigenManager" />

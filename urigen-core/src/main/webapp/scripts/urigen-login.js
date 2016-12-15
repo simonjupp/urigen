@@ -6,7 +6,8 @@
  */
 
 
-var usersURL = "api/users";
+var loginUrl = "api/users/login";
+var lookupUrl = "api/users/query";
 
 function autoUserLogin() {
 
@@ -18,47 +19,48 @@ function autoUserLogin() {
     $("#tabs").hide();
 
     var priorVisit = getCookie("urigen-manager-cookie");
+    var state = getCookie('urigen-state');
 
-    $.getJSON(usersURL, function(json) {
+    var url = '';
+    if (priorVisit == undefined || priorVisit == '') {
+        // if trying to login send the state
 
-        if (json == undefined) {
-            Alert.error("Can't access URI manager API! Please contact an admin.");
+        var code = getParameterByName('code');
+        if (code) {
+            url = loginUrl+"?state="+state+'&code='+code;
         }
-        else if (json.length == 0) {
-            $("#first-login").show();
+    } else {
+        // if previously logged in and api is in cookie, then log them in
+        url = lookupUrl+"?restApiKey=" + priorVisit;
+
+    }
+
+
+    $.getJSON(url, function(json) {
+
+        finalizeUserLogin(json);
+
+    }).fail( function(jqXHR) {
+        if (jqXHR.status == 404) {
+            console.log('user not found')
+            $("#invalid-login").show();
+            
         }
-        else {
-            // run as guest user
-            if (priorVisit == undefined || priorVisit == "") {
-
-                $("#user-full-name").html("Guest");
-                $("#first-login").hide();
-                $("#user-greeting").hide();
-                $("#tabs").show();
-                $("#guest-greeting").show();
-
-            }
-            else {
-
-                // log in by reading cookie and getting the user
-                $.getJSON("api/users/query?restApiKey=" + priorVisit, function(json) {
-
-                    if (json == undefined) {
-                        $("#user-full-name").html("Guest");
-                        $("#first-login").hide();
-                        $("#user-greeting").hide();
-                        $("#guest-greeting").show();
-                        $("#tabs").show();
-
-                    }
-                    else {
-                        // init
-                        finalizeUserLogin(json);
-                    }
-                });
-            }
+        if (jqXHR.status == 401) {
+            console.log('unauthorized user')
         }
+        guestLogin()
     });
+
+}
+
+function guestLogin() {
+
+    $("#user-full-name").html("Guest");
+    $("#first-login").hide();
+    $("#user-greeting").hide();
+    $("#tabs").show();
+    $("#guest-greeting").show();
 }
 
 function registerNewUserOnEnter(e) {
@@ -68,30 +70,46 @@ function registerNewUserOnEnter(e) {
     }
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return undefined;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 function userLogin() {
 
-    navigator.id.get(function(assertion) {
-        if (assertion) {
-            // This code will be invoked once the user has successfully
-            // selected an email address they control to sign in with.
-
-            $.ajax({
-                url: 'api/users/query?browserid=' + assertion,
-                dataType: 'json',
-                success: function(jsonData) {
-                    finalizeUserLogin(jsonData)
-                }                ,
-                error: function() {
-                    alert("unkown user, guest login")
-
-                }
-            });
-
-        } else {
-            // something went wrong!  the user isn't logged in.
-            alert("unkown user, guest login")
-        }
-    });
+    var state = Math.floor(Math.random() * 200000);
+    var now = new Date();
+    now.setDate(now.getDate() + 1);
+    setCookie("urigen-state", state, now )
+    var url      = window.location.href;
+    window.location = 'https://github.com/login/oauth/authorize?client_id=c407547972a603673100&redirect_uri='+url+'&state='+state+'&scope=user:email'
+    // navigator.id.get(function(assertion) {
+    //     if (assertion) {
+    //         // This code will be invoked once the user has successfully
+    //         // selected an email address they control to sign in with.
+    //
+    //         $.ajax({
+    //             url: 'api/users/query?browserid=' + assertion,
+    //             dataType: 'json',
+    //             success: function(jsonData) {
+    //                 finalizeUserLogin(jsonData)
+    //             }                ,
+    //             error: function() {
+    //                 alert("unkown user, guest login")
+    //
+    //             }
+    //         });
+    //
+    //     } else {
+    //         // something went wrong!  the user isn't logged in.
+    //         alert("unkown user, guest login")
+    //     }
+    // });
 
 
 
@@ -205,6 +223,7 @@ function createUserIfNoneExists(userJson) {
 
 
 function finalizeUserLogin(userJson) {
+
     // display the users name at the top
     $("#backgroundOverlay").css({
         "opacity": "0.7"
@@ -248,7 +267,7 @@ function getCookie(cookieName) {
 function setCookie(cookieName, cookieValue, expires) {
     document.cookie =
         cookieName + "=" + cookieValue + ";" +
-            "expires=" + expires + ";";
+        "expires=" + expires + ";";
 }
 
 

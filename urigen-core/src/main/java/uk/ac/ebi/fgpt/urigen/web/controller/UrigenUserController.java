@@ -1,28 +1,31 @@
 package uk.ac.ebi.fgpt.urigen.web.controller;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.util.UrlPathHelper;
 import uk.ac.ebi.fgpt.urigen.exception.UserCreateException;
 import uk.ac.ebi.fgpt.urigen.model.UrigenUser;
 import uk.ac.ebi.fgpt.urigen.service.BrowserIdService;
+import uk.ac.ebi.fgpt.urigen.service.GitHubIdService;
 import uk.ac.ebi.fgpt.urigen.service.UrigenUserService;
 import uk.ac.ebi.fgpt.urigen.web.view.ActionResponseBean;
 import uk.ac.ebi.fgpt.urigen.web.view.UserBean;
+import uk.ac.ebi.fgpt.urigen.web.view.UserNotFoundException;
 
+import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -35,6 +38,7 @@ import java.util.Set;
 public class UrigenUserController {
 
     private UrigenUserService userService;
+    private GitHubIdService gitHubIdService;
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -51,6 +55,15 @@ public class UrigenUserController {
         this.userService = userService;
     }
 
+    @Autowired
+    public void setGitHubService(GitHubIdService gitHubIdService) {
+        this.gitHubIdService = gitHubIdService;
+    }
+
+    public GitHubIdService getGitHubIdService() {
+        return gitHubIdService;
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public @ResponseBody UrigenUser getUser(@PathVariable int id) {
         return getUserService().getUser(id);
@@ -65,7 +78,7 @@ public class UrigenUserController {
 
             UserBean ub = getUserByRestApiKey(restApiKey);
             if (restApiKey != null &&
-                    !restApiKey.isEmpty() &&
+                    !restApiKey.equals("") &&
                     ub != null &&
                     ub.getAdmin()) {
                 users.add(
@@ -194,23 +207,53 @@ public class UrigenUserController {
         }
     }
 
-    @RequestMapping(value = "/query", method = RequestMethod.GET)
-    public @ResponseBody UserBean searchForUser(
-            @RequestParam(value = "browserid", required = false) String browserId,
-            @RequestParam(value = "email", required = false) String email,
-            @RequestParam(value = "restApiKey", required = false) String restApiKey) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public @ResponseBody UserBean loginUser(
+            @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "code", required = false) String code) throws UserNotFoundException, AuthenticationException {
 
-
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        if (requestAttributes instanceof ServletRequestAttributes) {
-            HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();
-            String lhost = request.getLocalName();
-            if (browserId != null) {
-                email = getApiKeyByBrowserId(browserId, lhost);
-                return getUserByEmail(email);
+        UserBean userBean = null;
+        if (code != null && state != null) {
+            for (String email : getGitHubIdService().getEmailFromGithub(code, state)) {
+                if (email != null) {
+                    userBean = getUserByEmail(email);
+                    if (userBean!= null) {
+                        return userBean;
+                    }
+                }
             }
         }
+        throw new UserNotFoundException();
+    }
 
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(value= HttpStatus.UNAUTHORIZED, reason="User Not Found") //401
+    public @ResponseBody String githubLoginException(HttpServletRequest request, Exception ex) throws IOException {
+
+        ExceptionJSONInfo response = new ExceptionJSONInfo();
+        response.setUrl(request.getRequestURL().toString());
+        response.setMessage(ex.getMessage());
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(response);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(value= HttpStatus.NOT_FOUND, reason="User Not Found") //404
+    public @ResponseBody String handleEmployeeNotFoundException(HttpServletRequest request, Exception ex) throws IOException {
+
+        ExceptionJSONInfo response = new ExceptionJSONInfo();
+        response.setUrl(request.getRequestURL().toString());
+        response.setMessage(ex.getMessage());
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(response);
+    }
+
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    public @ResponseBody UserBean searchForUser(
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "restApiKey", required = false) String restApiKey) throws AuthenticationException {
 
         if (restApiKey != null) {
             return getUserByRestApiKey(restApiKey);
@@ -275,4 +318,33 @@ public class UrigenUserController {
     }
 
 
+    private class ExceptionJSONInfo {
+        String url;
+        String message;
+
+        public ExceptionJSONInfo(String url, String message) {
+            this.url = url;
+            this.message = message;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public ExceptionJSONInfo() {
+
+        }
+    }
 }

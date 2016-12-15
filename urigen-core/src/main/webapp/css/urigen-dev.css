@@ -36,12 +36,21 @@ body {
 }
 
 #guest-greeting {
-    float: right; padding-left: 15px; display: none;
+    float: right;
+    display: none;
 }
 
 #first-login {
     float: right; padding-left: 15px; display: none;
 }
+
+#invalid-login {
+    float: right;
+    margin-top: 30px;
+    width: 400px;
+    margin-right: -100px;
+}
+
 
 .logo {
     position: absolute;

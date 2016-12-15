@@ -16,8 +16,10 @@
 
     <!--<link rel="stylesheet" href="css/urigen-main.css" type="text/css"/>-->
     <link rel="stylesheet" href="css/urigen-dev.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap-social.css" type="text/css"/>
 
-    <script src="https://browserid.org/include.js" type="text/javascript"></script>
 
 </head>
 <body onload="initUI();">
@@ -25,630 +27,640 @@
 <div class="contents" id="contents">
 
 
-<!-- Top banner login details and popups -->
+    <!-- Top banner login details and popups -->
 
-<div class="top-banner">
+    <div class="top-banner">
 
-<img src="images/logo.png" class="logo"/>
+        <img src="images/logo.png" class="logo"/>
 
-<!--<div id="user-greeting" style="float: right; padding-left: 15px; display: none;">-->
-<div id="user-greeting">
-    Logged in as: <span id="user-full-name"></span>
-    <a href="#"
-       style="font-size:smaller;text-align:right;" onclick="removeCookie('urigen-manager-cookie'); window.location.reload();">
-        (log out)</a> <br/>
-    <a href="#"
-       style="font-size:smaller;text-align:right;" onclick="alert(getCookie('urigen-manager-cookie'))">
-        Show my API key</a>
+        <!--<div id="user-greeting" style="float: right; padding-left: 15px; display: none;">-->
+        <div id="user-greeting">
+            Logged in as: <span id="user-full-name"></span>
+            <a href="#"
+               style="font-size:smaller;text-align:right;" onclick="removeCookie('urigen-manager-cookie'); window.location.reload();">
+                (log out)</a> <br/>
+            <a href="#"
+               style="font-size:smaller;text-align:right;" onclick="alert(getCookie('urigen-manager-cookie'))">
+                Show my API key</a>
 
-
-</div>
-
-<!--<div id="guest-greeting" style="float: right; padding-left: 15px; display: none;">-->
-<div id="guest-greeting">
-    <img src="images/sign_in_green.png"
-         onclick="userLogin();"/>
-</div>
-
-<div id="first-login">
-    This server has no admin account, please create one <a href="#"
-                                                           onclick="firstTimeAdminCreation();">
-    here!</a>.
-</div>
-
-<div id="register-user-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
-    <h1>Please register your details</h1>
-    <table>
-        <tbody>
-        <tr>
-            <td>Username: </td>
-            <td>
-                <label for="register-username">
-                </label>
-                <input id="register-username"
-                       name="register-username"
-                       title="register-username"
-                       type="text"
-                       class="ui-widget ui-widget-content"
-                        />
-            </td>
-            <td>
-                <p id="username-missing" class="ui-state-error ui-corner-all" style="display: none;">
-                    <span class="ui-icon ui-icon-alert"></span>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td>E-mail address: </td>
-            <td>
-                <label for="register-email">
-                </label>
-                <input id="register-email"
-                       name="register-email"
-                       title="register-email"
-                       type="text"
-                       class="ui-widget ui-widget-content"
-                        />
-            </td>
-            <td>
-                <p id="email-missing" class="ui-state-error ui-corner-all" style="display: none;">
-                    <span class="ui-icon ui-icon-alert"></span>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td>Admin account: </td>
-            <td>
-                <label for="register-admin">
-                </label>
-                <input id="register-admin"
-                       name="register-admin"
-                       title="register-admin"
-                       type="checkbox"
-                       class="ui-widget ui-widget-content"
-                       value="false"
-                        />
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td>
-                <div id="missing-data-error-message" class="ui-state-error ui-corner-all"
-                     style="float: left; padding: 5px; display: none;">
-                    <p>
-                        <strong>Alert:</strong>
-                        Please make sure all fields are completed.
-                    </p>
-                </div>
-                <div id="user-error-message" class="ui-state-error ui-corner-all"
-                     style="float: left; padding: 5px; display: none;">
-                    <p>
-                        <strong>Alert:</strong>
-                        Error creating user.
-                    </p>
-                </div>
-                <div id="email-exists-error-message" class="ui-state-error ui-corner-all"
-                     style="float: left; padding: 5px; display: none;">
-                    <p>
-                        <strong>Alert:</strong>
-                        E-mail address already exists
-                    </p>
-                </div>
-                <div style="text-align: right;">
-                    <button id="register-button"
-                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                            onclick="registerNewUser()">
-                        <span class="ui-button-text" style="font-weight: bold;">Register</span>
-                    </button>
-                    <button id="cancel-registration-button"
-                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                            onclick="autoUserLogin()">
-                        <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
-                    </button>
-                </div>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-
-<div id="login-user-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
-    <h1>Please login with username and e-mail address</h1>
-    <table>
-        <tbody>
-        <tr>
-            <td>Username: </td>
-            <td>
-                <label for="login-username">
-                </label>
-                <input id="login-username"
-                       name="login-username"
-                       title="login-username"
-                       type="text"
-                       class="ui-widget ui-widget-content"
-                        />
-            </td>
-            <td>
-                <p id="login-username-missing" class="ui-state-error ui-corner-all" style="display: none;">
-                    <span class="ui-icon ui-icon-alert"></span>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td>E-mail address: </td>
-            <td>
-                <label for="login-email">
-                </label>
-                <input id="login-email"
-                       name="login-email"
-                       title="login-email"
-                       type="text"
-                       onkeypress="registerNewUserOnEnter(event);"
-                       class="ui-widget ui-widget-content"
-                        />
-            </td>
-            <td>
-                <p id="login-email-missing" class="ui-state-error ui-corner-all" style="display: none;">
-                    <span class="ui-icon ui-icon-alert"></span>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td>
-                <div id="login-missing-data-error-message" class="ui-state-error ui-corner-all"
-                     style="float: left; padding: 5px; display: none;">
-                    <p>
-                        <strong>Alert:</strong>
-                        Please make sure all fields are completed.
-                    </p>
-                </div>
-                <div id="login-error-message" class="ui-state-error ui-corner-all"
-                     style="float: left; padding: 5px; display: none;">
-                    <p>
-                        <strong>Alert:</strong>
-                        No login details, please contact an administrator to request access
-                    </p>
-                </div>
-                <div style="text-align: right;">
-                    <button id="login-button"
-                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                            onclick="userLogin()">
-                        <span class="ui-button-text" style="font-weight: bold;">Login</span>
-                    </button>
-                    <button id="cancel-login-button"
-                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                            onclick="autoUserLogin()">
-                        <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
-                    </button>
-                </div>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-
-<div id="dialog-confirm" title="Delete these preference?" style="display: none;">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>All URIs associated with this preference will also be deleted. Are you sure?</p>
-</div>
-
-<div id="prefs-panel-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
-
-<h1>Define your new URI creation policy</h1>
-<label for="pref-hidden-id">
-</label>
-<input id="pref-hidden-id"
-       name="pref-hidden-id"
-       title="pref-hidden-id"
-       type="hidden"
-       value="-1"
-       class="ui-widget ui-widget-content"
-        />
-<label for="hidden-last-id">
-</label>
-<input id="hidden-last-id"
-       name="hidden-last-id"
-       title="hidden-last-id"
-       type="hidden"
-       value="-1"
-       class="ui-widget ui-widget-content"
-        />
-<table>
-    <tbody>
-    <tr>
-        <td>Ontology name: </td>
-        <td>
-            <label for="pref-name">
-            </label>
-            <input id="pref-name"
-                   name="pref-name"
-                   title="pref-name"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                    />
-        </td>
-        <td>
-            <p id="pref-name-missing" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span> You must supply a unique name for the ontology preference
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>Source ontology URL: </td>
-        <td>
-            <label for="ontology-url">
-            </label>
-            <input id="ontology-url"
-                   name="ontology-url"
-                   title="ontology-url"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                   style="width:300px;"
-                    />
-        </td>
-        <td>
-            <p id="ontology-url-error" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span> Must supply a URL to the ontology if check source is checked
-            </p>
-        </td>
-    </tr>
-    <!--<tr>-->
-        <!--<td></td>-->
-        <!--<td><span style="font-size:smaller;">Check new URI's against source?</span> <input id="check-source" type="checkbox" checked="checked"/></td>-->
-        <!--<td></td>-->
-    <!--</tr>-->
-    <tr>
-        <td>Ontology URI: </td>
-        <td>
-            <label for="ontology-uri">
-            </label>
-            <input id="ontology-uri"
-                   name="ontology-uri"
-                   title="ontology-uri"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                   style="width:300px;"
-                    />
-        </td>
-        <td>
-            <p id="ontology-uri-error" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span> You must specify the base URI for the ontology
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>New entities base URI: </td>
-        <td>
-            <label for="base-uri">
-            </label>
-            <input id="base-uri"
-                   name="base-uri"
-                   title="base-uri"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                   style="width:300px;"
-                    />
-        </td>
-        <td>
-            <p id="base-uri-error" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span>
-            </p>
-        </td>
-    </tr>
-    <!--<tr>-->
-        <!--<td></td>-->
-        <!--<td><span style="font-size:smaller;">Same as ontology URI?</span> <input id="same-base-uri" type="checkbox" checked="checked"/></td>-->
-        <!--<td></td>-->
-    <!--</tr>-->
-    <tr>
-        <td>Followed by: </td>
-        <td>
-            <label for="slash">/
-            </label>
-            <input id="slash"
-                   name="separator"
-                   title="slash"
-                   type="radio"
-                   class="ui-widget ui-widget-content"
-                   value="/"
-                   checked="checked"
-                    />
-            <label for="hash">#
-            </label>
-            <input id="hash"
-                   name="separator"
-                   title="hash"
-                   type="radio"
-                   class="ui-widget ui-widget-content"
-                   value="#"
-                    >
-            <label for="colon">:
-            </label>
-            <input id="colon"
-                   name="separator"
-                   title="colon"
-                   type="radio"
-                   class="ui-widget ui-widget-content"
-                   value=":"
-                    />
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Accession types: </td>
-        <td>
-            <label for="pref-type">
-            </label>
-            <select id="pref-type"
-                    name="pref-type"
-                    title="pref-type"
-                    class="ui-widget ui-widget-content"
-                    onchange="selectionHandler()"
-                    >
-            </select>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Accession prefix: </td>
-        <td>
-            <label for="prefix">
-            </label>
-            <input id="prefix"
-                   name="prefix"
-                   title="prefix"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                    />
-        </td>
-        <td>
-            <p id="prefix-error" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span> No white spaces allowed
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>Accession suffix: </td>
-        <td>
-            <label for="suffix">
-            </label>
-            <input id="suffix"
-                   name="suffix"
-                   title="suffix"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                    />
-        </td>
-        <td>
-            <p id="suffix-error" class="ui-state-error ui-corner-all" style="display: none;">
-                <span class="ui-icon ui-icon-alert"></span> No white spaces allowed
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>Digit count: </td>
-        <td>
-            <label for="digits">
-            </label>
-            <input id="digits"
-                   name="digits"
-                   title="digits"
-                   type="text"
-                   class="ui-widget ui-widget-content"
-                   value="7"
-                    />
-        </td>
-    </tr>
-    <td>
-        <p id="digit-error" class="ui-state-error ui-corner-all" style="display: none;">
-            <span class="ui-icon ui-icon-alert"></span> Must be positive integer and no white spaces
-        </p>
-    </td>
-    </tbody>
-
-</table>
-
-<div id="all-users-start-end-div" style="display: none;">
-    <h1>Select a range for all users</h1>
-    <label for="start">Start:
-    </label>
-    <input id="start"
-           name="start"
-           title="start"
-           type="text"
-           class="ui-widget ui-widget-content"
-           value="1"
-            />
-
-    <p id="start-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> Must be positive integer and no white spaces
-    </p>
-    <label for="end">End:
-    </label>
-    <input id="end"
-           name="end"
-           title="end"
-           type="text"
-           class="ui-widget ui-widget-content"
-           value="-1"
-            />
-    <p id="end-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> Must be positive integer (or -1), no white spaces and greater than start
-    </p>
-</div>
-
-<div id="selected-users-start-end-div" style="display: none;">
-    <h1>Select a range for each users</h1> <input type="button" value="Add user range" onclick="addUserRangePrefsRow()" /><br/>
-
-    <table id="user-range-prefs-table">
-        <tr>
-            <th>User</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Remove</th>
-            <th></th>
-        </tr>
-    </table>
-    <p id="duplicate-user-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> You can only set one range per user
-    </p>
-
-    <p id="user-range-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> All ranges must have a start and an end, where the end is greater than the start
-    </p>
-
-    <p id="missing-range-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> All ranges must have a start and an end, where the end is greater than the start
-    </p>
-
-    <p id="missing-user-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span> You must supply a range to at least one user
-    </p>
-
-    <p id="serverside-error" class="ui-state-error ui-corner-all" style="display: none;">
-        <span class="ui-icon ui-icon-alert"></span>
-    </p>
-
-</div>
-
-<br/>
-
-<button id="submit-prefs-button"
-        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-        onclick="submitNewPrefs()">
-    <span class="ui-button-text" style="font-weight: bold;">Submit</span>
-</button>
-
-<button id="cancel-prefs-button"
-        class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-        onclick="closePrefPanel()">
-    <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
-</button>
-<img id="prefs-submit-image" src="images/pipeline-loader.gif" style="display: none;">
-
-
-</div>
-
-
-<div id="welcome-message">
-    the URI generation service
-</div>
-
-
-</div>
-
-
-<div id="backgroundOverlay"></div>
-
-
-
-
-<div id="urigen-admin-panel">
-
-    <!-- Main body, includes tab panels for preferences, users and new URIs...-->
-
-
-
-    <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
-
-        <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-            <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">Urigen console</a></li>
-            <li class="ui-state-default ui-corner-top"><a href="#tabs-2">URI creation preferences</a></li>
-            <li class="ui-state-default ui-corner-top"><a href="#tabs-3">Users</a></li>
-        </ul>
-        <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
-            <h1>Latest URI's...</h1>
-
-            <!--<button id="new-uri-button"-->
-            <!--class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"-->
-            <!--onclick="showUriRequestPanel()">-->
-            <!--<span class="ui-button-text" style="font-weight: bold;">New URI Request</span>-->
-            <!--</button>-->
-
-            <div id="uri-table-content">
-                <table id="uri-table" class="urigen-details-table">
-
-                    <thead>
-                    <tr>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">URI</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Label</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">User</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Creation time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
 
         </div>
 
-        <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-2">
-            <button id="add-prefs-button"
-                    onclick="showAddPrefsPanel()"
-                    style="margin-bottom: 10px;">
-                <span class="ui-button-text">Create new URI creation preferences</span>
-            </button>
+        <!--<div id="guest-greeting" style="float: right; padding-left: 15px; display: none;">-->
+        <div id="guest-greeting">
+            <a onclick="userLogin();" class="btn btn-block btn-social btn-github">
+               <span class="fa fa-github"></span> Sign in with GitHub
+             </a>
+        </div>
 
-            <div id="prefs-table-content">
-                <table id="prefs-table" class="urigen-details-table">
 
-                    <thead>
-                    <tr>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Id</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology name</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology URI</th>
-                        <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Auto id type</th>-->
-                        <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Status</th>-->
-                        <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Last updated</th>-->
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+        <div id="first-login">
+            This server has no admin account, please create one <a href="#"
+                                                                   onclick="firstTimeAdminCreation();">
+            here!</a>.
+        </div>
 
-                    </tbody>
-                </table>
-            </div>    </div>
+        <div id="register-user-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
+            <h1>Please register your details</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Username: </td>
+                    <td>
+                        <label for="register-username">
+                        </label>
+                        <input id="register-username"
+                               name="register-username"
+                               title="register-username"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="username-missing" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail address: </td>
+                    <td>
+                        <label for="register-email">
+                        </label>
+                        <input id="register-email"
+                               name="register-email"
+                               title="register-email"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="email-missing" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Admin account: </td>
+                    <td>
+                        <label for="register-admin">
+                        </label>
+                        <input id="register-admin"
+                               name="register-admin"
+                               title="register-admin"
+                               type="checkbox"
+                               class="ui-widget ui-widget-content"
+                               value="false"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div id="missing-data-error-message" class="ui-state-error ui-corner-all"
+                             style="float: left; padding: 5px; display: none;">
+                            <p>
+                                <strong>Alert:</strong>
+                                Please make sure all fields are completed.
+                            </p>
+                        </div>
+                        <div id="user-error-message" class="ui-state-error ui-corner-all"
+                             style="float: left; padding: 5px; display: none;">
+                            <p>
+                                <strong>Alert:</strong>
+                                Error creating user.
+                            </p>
+                        </div>
+                        <div id="email-exists-error-message" class="ui-state-error ui-corner-all"
+                             style="float: left; padding: 5px; display: none;">
+                            <p>
+                                <strong>Alert:</strong>
+                                E-mail address already exists
+                            </p>
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="register-button"
+                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                    onclick="registerNewUser()">
+                                <span class="ui-button-text" style="font-weight: bold;">Register</span>
+                            </button>
+                            <button id="cancel-registration-button"
+                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                    onclick="autoUserLogin()">
+                                <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
 
-        <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">
-            <button id="add-user-button"
-                    onclick="showAddUserPanel()"
-                    style="margin-bottom: 10px;">
-                <span class="ui-button-text">Add user</span>
-            </button>
+                </tbody>
+            </table>
+        </div>
 
-            <div id="user-table-content">
-                <table id="user-table" class="urigen-details-table">
+        <div id="login-user-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
+            <h1>Please login with username and e-mail address</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Username: </td>
+                    <td>
+                        <label for="login-username">
+                        </label>
+                        <input id="login-username"
+                               name="login-username"
+                               title="login-username"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="login-username-missing" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail address: </td>
+                    <td>
+                        <label for="login-email">
+                        </label>
+                        <input id="login-email"
+                               name="login-email"
+                               title="login-email"
+                               type="text"
+                               onkeypress="registerNewUserOnEnter(event);"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="login-email-missing" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div id="login-missing-data-error-message" class="ui-state-error ui-corner-all"
+                             style="float: left; padding: 5px; display: none;">
+                            <p>
+                                <strong>Alert:</strong>
+                                Please make sure all fields are completed.
+                            </p>
+                        </div>
+                        <div id="login-error-message" class="ui-state-error ui-corner-all"
+                             style="float: left; padding: 5px; display: none;">
+                            <p>
+                                <strong>Alert:</strong>
+                                No login details, please contact an administrator to request access
+                            </p>
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="login-button"
+                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                    onclick="userLogin()">
+                                <span class="ui-button-text" style="font-weight: bold;">Login</span>
+                            </button>
+                            <button id="cancel-login-button"
+                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                    onclick="autoUserLogin()">
+                                <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
 
-                    <thead>
-                    <tr>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Id</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Username</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">E-mail address</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">API key</th>
-                        <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Admin</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                </tbody>
+            </table>
+        </div>
 
-                    </tbody>
-                </table>
+        <div id="dialog-confirm" title="Delete these preference?" style="display: none;">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>All URIs associated with this preference will also be deleted. Are you sure?</p>
+        </div>
+
+        <div id="prefs-panel-popup" style="display: none;" class="ui-widget ui-widget-content ui-corner-all">
+
+            <h1>Define your new URI creation policy</h1>
+            <label for="pref-hidden-id">
+            </label>
+            <input id="pref-hidden-id"
+                   name="pref-hidden-id"
+                   title="pref-hidden-id"
+                   type="hidden"
+                   value="-1"
+                   class="ui-widget ui-widget-content"
+            />
+            <label for="hidden-last-id">
+            </label>
+            <input id="hidden-last-id"
+                   name="hidden-last-id"
+                   title="hidden-last-id"
+                   type="hidden"
+                   value="-1"
+                   class="ui-widget ui-widget-content"
+            />
+            <table>
+                <tbody>
+                <tr>
+                    <td>Ontology name: </td>
+                    <td>
+                        <label for="pref-name">
+                        </label>
+                        <input id="pref-name"
+                               name="pref-name"
+                               title="pref-name"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="pref-name-missing" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span> You must supply a unique name for the ontology preference
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Source ontology URL: </td>
+                    <td>
+                        <label for="ontology-url">
+                        </label>
+                        <input id="ontology-url"
+                               name="ontology-url"
+                               title="ontology-url"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                               style="width:300px;"
+                        />
+                    </td>
+                    <td>
+                        <p id="ontology-url-error" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span> Must supply a URL to the ontology if check source is checked
+                        </p>
+                    </td>
+                </tr>
+                <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td><span style="font-size:smaller;">Check new URI's against source?</span> <input id="check-source" type="checkbox" checked="checked"/></td>-->
+                <!--<td></td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>Ontology URI: </td>
+                    <td>
+                        <label for="ontology-uri">
+                        </label>
+                        <input id="ontology-uri"
+                               name="ontology-uri"
+                               title="ontology-uri"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                               style="width:300px;"
+                        />
+                    </td>
+                    <td>
+                        <p id="ontology-uri-error" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span> You must specify the base URI for the ontology
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>New entities base URI: </td>
+                    <td>
+                        <label for="base-uri">
+                        </label>
+                        <input id="base-uri"
+                               name="base-uri"
+                               title="base-uri"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                               style="width:300px;"
+                        />
+                    </td>
+                    <td>
+                        <p id="base-uri-error" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span>
+                        </p>
+                    </td>
+                </tr>
+                <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td><span style="font-size:smaller;">Same as ontology URI?</span> <input id="same-base-uri" type="checkbox" checked="checked"/></td>-->
+                <!--<td></td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>Followed by: </td>
+                    <td>
+                        <label for="slash">/
+                        </label>
+                        <input id="slash"
+                               name="separator"
+                               title="slash"
+                               type="radio"
+                               class="ui-widget ui-widget-content"
+                               value="/"
+                               checked="checked"
+                        />
+                        <label for="hash">#
+                        </label>
+                        <input id="hash"
+                               name="separator"
+                               title="hash"
+                               type="radio"
+                               class="ui-widget ui-widget-content"
+                               value="#"
+                        >
+                        <label for="colon">:
+                        </label>
+                        <input id="colon"
+                               name="separator"
+                               title="colon"
+                               type="radio"
+                               class="ui-widget ui-widget-content"
+                               value=":"
+                        />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accession types: </td>
+                    <td>
+                        <label for="pref-type">
+                        </label>
+                        <select id="pref-type"
+                                name="pref-type"
+                                title="pref-type"
+                                class="ui-widget ui-widget-content"
+                                onchange="selectionHandler()"
+                        >
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accession prefix: </td>
+                    <td>
+                        <label for="prefix">
+                        </label>
+                        <input id="prefix"
+                               name="prefix"
+                               title="prefix"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="prefix-error" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span> No white spaces allowed
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Accession suffix: </td>
+                    <td>
+                        <label for="suffix">
+                        </label>
+                        <input id="suffix"
+                               name="suffix"
+                               title="suffix"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                        />
+                    </td>
+                    <td>
+                        <p id="suffix-error" class="ui-state-error ui-corner-all" style="display: none;">
+                            <span class="ui-icon ui-icon-alert"></span> No white spaces allowed
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Digit count: </td>
+                    <td>
+                        <label for="digits">
+                        </label>
+                        <input id="digits"
+                               name="digits"
+                               title="digits"
+                               type="text"
+                               class="ui-widget ui-widget-content"
+                               value="7"
+                        />
+                    </td>
+                </tr>
+                <td>
+                    <p id="digit-error" class="ui-state-error ui-corner-all" style="display: none;">
+                        <span class="ui-icon ui-icon-alert"></span> Must be positive integer and no white spaces
+                    </p>
+                </td>
+                </tbody>
+
+            </table>
+
+            <div id="all-users-start-end-div" style="display: none;">
+                <h1>Select a range for all users</h1>
+                <label for="start">Start:
+                </label>
+                <input id="start"
+                       name="start"
+                       title="start"
+                       type="text"
+                       class="ui-widget ui-widget-content"
+                       value="1"
+                />
+
+                <p id="start-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> Must be positive integer and no white spaces
+                </p>
+                <label for="end">End:
+                </label>
+                <input id="end"
+                       name="end"
+                       title="end"
+                       type="text"
+                       class="ui-widget ui-widget-content"
+                       value="-1"
+                />
+                <p id="end-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> Must be positive integer (or -1), no white spaces and greater than start
+                </p>
             </div>
+
+            <div id="selected-users-start-end-div" style="display: none;">
+                <h1>Select a range for each users</h1> <input type="button" value="Add user range" onclick="addUserRangePrefsRow()" /><br/>
+
+                <table id="user-range-prefs-table">
+                    <tr>
+                        <th>User</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Remove</th>
+                        <th></th>
+                    </tr>
+                </table>
+                <p id="duplicate-user-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> You can only set one range per user
+                </p>
+
+                <p id="user-range-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> All ranges must have a start and an end, where the end is greater than the start
+                </p>
+
+                <p id="missing-range-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> All ranges must have a start and an end, where the end is greater than the start
+                </p>
+
+                <p id="missing-user-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span> You must supply a range to at least one user
+                </p>
+
+                <p id="serverside-error" class="ui-state-error ui-corner-all" style="display: none;">
+                    <span class="ui-icon ui-icon-alert"></span>
+                </p>
+
+            </div>
+
+            <br/>
+
+            <button id="submit-prefs-button"
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                    onclick="submitNewPrefs()">
+                <span class="ui-button-text" style="font-weight: bold;">Submit</span>
+            </button>
+
+            <button id="cancel-prefs-button"
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                    onclick="closePrefPanel()">
+                <span class="ui-button-text" style="font-weight: bold;">Cancel</span>
+            </button>
+            <img id="prefs-submit-image" src="images/pipeline-loader.gif" style="display: none;">
+
+
+        </div>
+
+
+        <div id="welcome-message">
+            the URI generation service
+        </div>
+
+        <div id="invalid-login" style="display: none;" >
+            <p class="ui-state-error ui-corner-all">
+                <span class="ui-icon ui-icon-alert"></span>
+                <span style="display: inline">User not registered, please contact an admin</span>
+            </p>
         </div>
 
 
     </div>
 
 
-</div>
+
+    <div id="backgroundOverlay"></div>
+
+
+
+
+    <div id="urigen-admin-panel">
+
+        <!-- Main body, includes tab panels for preferences, users and new URIs...-->
+
+
+
+        <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
+
+            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1">Urigen console</a></li>
+                <li class="ui-state-default ui-corner-top"><a href="#tabs-2">URI creation preferences</a></li>
+                <li class="ui-state-default ui-corner-top"><a href="#tabs-3">Users</a></li>
+            </ul>
+            <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
+                <h1>Latest URI's...</h1>
+
+                <!--<button id="new-uri-button"-->
+                <!--class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"-->
+                <!--onclick="showUriRequestPanel()">-->
+                <!--<span class="ui-button-text" style="font-weight: bold;">New URI Request</span>-->
+                <!--</button>-->
+
+                <div id="uri-table-content">
+                    <table id="uri-table" class="urigen-details-table">
+
+                        <thead>
+                        <tr>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">URI</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Label</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">User</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Creation time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-2">
+                <button id="add-prefs-button"
+                        onclick="showAddPrefsPanel()"
+                        style="margin-bottom: 10px;">
+                    <span class="ui-button-text">Create new URI creation preferences</span>
+                </button>
+
+                <div id="prefs-table-content">
+                    <table id="prefs-table" class="urigen-details-table">
+
+                        <thead>
+                        <tr>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Id</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology name</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Ontology URI</th>
+                            <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Auto id type</th>-->
+                            <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Status</th>-->
+                            <!--<th class="ui-state-default ui-corner-all ui-button-icon-secondary">Last updated</th>-->
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>    </div>
+
+            <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-3">
+                <button id="add-user-button"
+                        onclick="showAddUserPanel()"
+                        style="margin-bottom: 10px;">
+                    <span class="ui-button-text">Add user</span>
+                </button>
+
+                <div id="user-table-content">
+                    <table id="user-table" class="urigen-details-table">
+
+                        <thead>
+                        <tr>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Id</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Username</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">E-mail address</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">API key</th>
+                            <th class="ui-state-default ui-corner-all ui-button-icon-secondary">Admin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
 
 
 </div>

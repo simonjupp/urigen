@@ -217,11 +217,11 @@ function requestUsers() {
         success: function(json) {
             users = json;
             displayUserCallback();
-            autoUserLogin();
+            // autoUserLogin();
         },
         error: function() {
             alert("Failed to retrieve users");
-            autoUserLogin();
+            // autoUserLogin();
         }
     });
 }
@@ -464,7 +464,7 @@ function getUserSelectBox(element1) {
         },
         error: function() {
             alert("Failed to retrieve users");
-            autoUserLogin();
+            // autoUserLogin();
 
         }
     });

@@ -4,4 +4,4 @@ URIGen is a Java API and web service for managing the creation of Uniform Resour
 
 # Documentation 
 
-See the URIGen wiki https://github.com/simonjupp/urigen/wiki
+    See the URIGen wiki https://github.com/simonjupp/urigen/wiki

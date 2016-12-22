@@ -18,40 +18,46 @@ function autoUserLogin() {
 
     $("#tabs").hide();
 
-    var priorVisit = getCookie("urigen-manager-cookie");
-    var state = getCookie('urigen-state');
-
-    var url = '';
-    if (priorVisit == undefined || priorVisit == '') {
-        // if trying to login send the state
-
-        var code = getParameterByName('code');
-        if (code) {
-            url = loginUrl+"?state="+state+'&code='+code;
+    $.getJSON('api/users', function(data) {
+       
+        if (data.length == 0) {
+            $("#first-login").show();
+        } else {
+            var priorVisit = getCookie("urigen-manager-cookie");
+            var state = getCookie('urigen-state');
+        
+            var url = '';
+            if (priorVisit == undefined || priorVisit == '') {
+                // if trying to login send the state
+        
+                var code = getParameterByName('code');
+                if (code) {
+                    url = loginUrl+"?state="+state+'&code='+code;
+                }
+            } else {
+                // if previously logged in and api is in cookie, then log them in
+                url = lookupUrl+"?restApiKey=" + priorVisit;
+        
+            }
+        
+        
+            $.getJSON(url, function(json) {
+        
+                finalizeUserLogin(json);
+        
+            }).fail( function(jqXHR) {
+                if (jqXHR.status == 404) {
+                    console.log('user not found')
+                    $("#invalid-login").show();
+        
+                }
+                if (jqXHR.status == 401) {
+                    console.log('unauthorized user')
+                }
+                guestLogin()
+            });
         }
-    } else {
-        // if previously logged in and api is in cookie, then log them in
-        url = lookupUrl+"?restApiKey=" + priorVisit;
-
-    }
-
-
-    $.getJSON(url, function(json) {
-
-        finalizeUserLogin(json);
-
-    }).fail( function(jqXHR) {
-        if (jqXHR.status == 404) {
-            console.log('user not found')
-            $("#invalid-login").show();
-
-        }
-        if (jqXHR.status == 401) {
-            console.log('unauthorized user')
-        }
-        guestLogin()
     });
-
 }
 
 function guestLogin() {

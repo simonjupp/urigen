@@ -44,7 +44,7 @@ function autoUserLogin() {
         if (jqXHR.status == 404) {
             console.log('user not found')
             $("#invalid-login").show();
-            
+
         }
         if (jqXHR.status == 401) {
             console.log('unauthorized user')
@@ -86,8 +86,19 @@ function userLogin() {
     var now = new Date();
     now.setDate(now.getDate() + 1);
     setCookie("urigen-state", state, now )
-    var url      = window.location.href;
-    window.location = 'https://github.com/login/oauth/authorize?client_id=c407547972a603673100&redirect_uri='+url+'&state='+state+'&scope=user:email'
+
+    $.ajax({
+        url: 'api/clientId',
+        success: function(clientId) {
+            var url      = window.location.href;
+            window.location = 'https://github.com/login/oauth/authorize?client_id='+clientId+'&redirect_uri='+url+'&state='+state+'&scope=user:email'
+        }                ,
+        error: function() {
+            console.log("'can't get client id")
+
+        }
+    });
+
     // navigator.id.get(function(assertion) {
     //     if (assertion) {
     //         // This code will be invoked once the user has successfully

@@ -19,5 +19,5 @@
 
     <!-- drive MVC setup based on @Controller, @RequestMapping annotations etc -->
     <mvc:annotation-driven />
-
+    <context:property-placeholder location="classpath:urigen.properties" />
 </beans>

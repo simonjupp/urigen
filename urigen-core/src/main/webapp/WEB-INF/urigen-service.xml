@@ -8,7 +8,6 @@
 
     <context:property-placeholder location="classpath:urigen.properties" />
 
-
     <bean name="urigenManager" class="uk.ac.ebi.fgpt.urigen.impl.UrigenManagerImpl">
         <property name="preferenceDAO" ref="preferenceDAO" />
         <property name="userDAO" ref="userDAO" />
@@ -17,7 +16,6 @@
         <!--<property name="userRangeDAO" ref="rangeDAO" />-->
         <!--<property name="defaultPreferencesTemplate" ref="defaultPreferenceTemplate" />-->
     </bean>
-
 
     <!-- GitGub service -->
     <bean name="gitHubService" class="uk.ac.ebi.fgpt.urigen.service.GitHubIdService">

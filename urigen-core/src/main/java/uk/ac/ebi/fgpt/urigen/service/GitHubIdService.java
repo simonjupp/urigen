@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.naming.AuthenticationException;
 import javax.net.ssl.HttpsURLConnection;
@@ -43,6 +44,8 @@ public class GitHubIdService {
 
 
     public GitHubIdService() {
+        this.state = UUID.randomUUID().toString();
+
     }
 
     public GitHubIdService(String clientId, String secretId, String redirectUrl) {

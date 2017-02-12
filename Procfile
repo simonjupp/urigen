@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Durigen.github.clientId=$GITHUB_CLIENT_ID -Durigen.github.secretId=$GITHUB_SECRET -Durigen.github.redirectUrl=$WEB_APPLICATION_DOMAIN -jar urigen-core/target/dependency/jetty-runner.jar --port $PORT  urigen-core/target/urigen.war
+web: java $JAVA_OPTS -Durigen.github.clientId=$GITHUB_CLIENT_ID -Durigen.github.secretId=$GITHUB_SECRET -Durigen.github.redirectUrl=https://$WEB_APPLICATION_DOMAIN -jar urigen-core/target/dependency/jetty-runner.jar --port $PORT  urigen-core/target/urigen.war

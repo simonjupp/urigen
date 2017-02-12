@@ -5,3 +5,10 @@ URIGen is a Java API and web service for managing the creation of Uniform Resour
 # Documentation 
 
 See the URIGen wiki https://github.com/simonjupp/urigen/wiki
+
+#Deploy 
+
+You can run URIGen on Heroku, you'll need to set up a GitHub application that handles the authentication for URIGen. Register a GitHub app here https://github.com/settings/developers. You'll need your clientId, client secret and the redirect URL before you can deploy you Heroku app. 
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+

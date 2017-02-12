@@ -1,0 +1,23 @@
+{
+"name": "URIGen server",
+"description": "A serer for managing URI creation",
+"repository": "https://github.com/simonjupp/urigen",
+"keywords": [
+"uri creation"
+],
+"success_url": "/",
+"env": {
+"GITHUB_CLIENT_ID": {
+"description": "The client ID from github login",
+"value": "changeme"
+},
+"GITHUB_SECRET": {
+"description": "The secret for github login",
+"value": "changeme"
+},
+"WEB_APPLICATION_DOMAIN": {
+"description": "The redirect URL",
+"value": "<app name>.herokuapp.com"
+}
+}
+}

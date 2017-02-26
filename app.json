@@ -1,7 +1,7 @@
 {
 "name": "URIGen server",
 "description": "A serer for managing URI creation",
-"repository": "https://github.com/simonjupp/urigen",
+"repository": "https://github.com/EBISPOT/urigen",
 "keywords": [
 "uri creation"
 ],

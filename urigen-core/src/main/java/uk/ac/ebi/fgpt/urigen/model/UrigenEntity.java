@@ -2,7 +2,6 @@ package uk.ac.ebi.fgpt.urigen.model;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import java.net.URI;
 import java.util.Date;
 
 /**

@@ -2,7 +2,6 @@ package uk.ac.ebi.fgpt.urigen.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import uk.ac.ebi.fgpt.urigen.dao.UserDAO;
 import uk.ac.ebi.fgpt.urigen.exception.UserCreateException;
 import uk.ac.ebi.fgpt.urigen.impl.SimpleUrigenUserImpl;
 import uk.ac.ebi.fgpt.urigen.model.UrigenManager;
@@ -22,7 +21,7 @@ public class DefaultUrigenUserService implements UrigenUserService {
 
     private UrigenManager manager;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;

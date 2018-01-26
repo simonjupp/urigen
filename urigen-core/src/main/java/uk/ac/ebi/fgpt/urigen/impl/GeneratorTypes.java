@@ -1,7 +1,5 @@
 package uk.ac.ebi.fgpt.urigen.impl;
 
-import java.lang.reflect.GenericDeclaration;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,8 +24,8 @@ public enum GeneratorTypes {
     public static final Set<String> ALL_TYPES_DESC;
 
     static {
-        ALL_TYPES_ID = new HashSet<String>();
-        ALL_TYPES_DESC = new HashSet<String>();
+        ALL_TYPES_ID = new HashSet<>();
+        ALL_TYPES_DESC = new HashSet<>();
 
         for(GeneratorTypes v : GeneratorTypes.values()) {
             ALL_TYPES_ID.add(v.getClassId());

@@ -1,7 +1,5 @@
 package uk.ac.ebi.fgpt.urigen.web.view;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 /**
  * @author Simon Jupp
  * @date 04/01/2012

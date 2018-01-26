@@ -4,11 +4,6 @@ package uk.ac.ebi.fgpt.urigen.impl;
 import uk.ac.ebi.fgpt.urigen.dao.*;
 import uk.ac.ebi.fgpt.urigen.model.*;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 /**
  * @author Simon Jupp
  * @date 15/12/2011

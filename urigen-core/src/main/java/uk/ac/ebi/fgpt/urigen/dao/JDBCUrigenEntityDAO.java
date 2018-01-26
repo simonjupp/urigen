@@ -1,6 +1,5 @@
 package uk.ac.ebi.fgpt.urigen.dao;
 
-import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,7 +11,6 @@ import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Collection;
 
 /**
@@ -24,7 +22,7 @@ public class JDBCUrigenEntityDAO implements UrigenEntityDAO{
 
     private JdbcTemplate jdbcTemplate;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;

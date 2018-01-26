@@ -3,7 +3,6 @@ package uk.ac.ebi.fgpt.urigen.service;
 import uk.ac.ebi.fgpt.urigen.exception.PreferenceCreationException;
 import uk.ac.ebi.fgpt.urigen.impl.GeneratorTypes;
 import uk.ac.ebi.fgpt.urigen.model.UrigenPreference;
-import uk.ac.ebi.fgpt.urigen.model.UrigenUserRange;
 
 import java.util.Collection;
 

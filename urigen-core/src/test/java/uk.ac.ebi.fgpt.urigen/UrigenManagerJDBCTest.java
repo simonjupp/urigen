@@ -27,14 +27,14 @@ import java.sql.SQLException;
  */
 public class UrigenManagerJDBCTest extends TestCase {
 
-    private JDBCUserDAO uDao = new JDBCUserDAO();
-    private JDBCPreferencesDAO pDao = new JDBCPreferencesDAO();
-    private JDBCUrigenEntityDAO eDao = new JDBCUrigenEntityDAO();
+    private final JDBCUserDAO uDao = new JDBCUserDAO();
+    private final JDBCPreferencesDAO pDao = new JDBCPreferencesDAO();
+    private final JDBCUrigenEntityDAO eDao = new JDBCUrigenEntityDAO();
 
     private UrigenManager uriGenManager;
 
     private Connection connection;
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
 
     @Override

@@ -27,7 +27,7 @@ import java.util.HashSet;
 @RequestMapping("/preferences")
 public class PreferencesController {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;
@@ -71,7 +71,7 @@ public class PreferencesController {
     @RequestMapping(value = "/types", method = RequestMethod.GET)
     public @ResponseBody
     Collection<PreferenceTypeBean> getPreferencesTypes() {
-        Collection<PreferenceTypeBean> types = new HashSet<PreferenceTypeBean>();
+        Collection<PreferenceTypeBean> types = new HashSet<>();
         for (GeneratorTypes type : getPreferenceService().getGeneratorTypes()) {
             types.add(new PreferenceTypeBean(type.getClassId(), type.getDescription()));
         }

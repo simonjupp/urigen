@@ -1,6 +1,5 @@
 package uk.ac.ebi.fgpt.urigen.dao;
 
-import junit.framework.AssertionFailedError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,7 +23,7 @@ public class JDBCUserDAO implements UserDAO {
 
     private JdbcTemplate jdbcTemplate;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public static final String USER_SELECT =
             "select id, user_name, email, restapikey, admin " +
@@ -113,7 +112,7 @@ public class JDBCUserDAO implements UserDAO {
                     new UrigenUserMapper());
         }
         catch (EmptyResultDataAccessException e) {
-            return new HashSet<UrigenUser>();
+            return new HashSet<>();
         }
     }
 

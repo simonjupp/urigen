@@ -2,8 +2,6 @@ package uk.ac.ebi.fgpt.urigen.dao;
 
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
-import java.net.URI;
-
 /**
  * @author Simon Jupp
  * @date 18/12/2011

@@ -1,9 +1,7 @@
 package uk.ac.ebi.fgpt.urigen.dao;
 
 import uk.ac.ebi.fgpt.urigen.exception.AutoIDException;
-import uk.ac.ebi.fgpt.urigen.exception.UrigenException;
 import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
-import uk.ac.ebi.fgpt.urigen.model.UrigenPreference;
 
 import java.util.Collection;
 

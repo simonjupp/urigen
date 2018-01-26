@@ -92,7 +92,7 @@ public class HSQLDBInitializer {
     private String username;
     private String password;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;

@@ -28,12 +28,12 @@ import java.util.Set;
  */
 public class HsqlEmbeddedTest extends TestCase{
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private Connection connection;
 
-    private JDBCUserDAO uDao = new JDBCUserDAO();
-    private JDBCPreferencesDAO pDao = new JDBCPreferencesDAO();
+    private final JDBCUserDAO uDao = new JDBCUserDAO();
+    private final JDBCPreferencesDAO pDao = new JDBCPreferencesDAO();
 
 
     @Override
@@ -155,7 +155,7 @@ public class HsqlEmbeddedTest extends TestCase{
 
     public void testPreferencesTable () {
 
-        Set<UrigenPreference> validPrefs = new HashSet<UrigenPreference>();
+        Set<UrigenPreference> validPrefs = new HashSet<>();
 
         UrigenPreference pref1 = new SimpleUrigenPreferencesImpl(
                 "test-onto-1",

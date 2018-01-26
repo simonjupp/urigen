@@ -13,11 +13,11 @@ import java.util.*;
  */
 public class InMemPreferencesDAO implements PreferencesDAO{
 
-    private Map<Integer, UrigenPreference> preferenceMap;
+    private final Map<Integer, UrigenPreference> preferenceMap;
     private int prefId = 0;
 
     public InMemPreferencesDAO () {
-        preferenceMap = new HashMap<Integer, UrigenPreference>();
+        preferenceMap = new HashMap<>();
     }
 
     public UrigenPreference getPreferencesById(int id) {

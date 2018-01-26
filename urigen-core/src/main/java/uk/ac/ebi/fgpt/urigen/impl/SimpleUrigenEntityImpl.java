@@ -23,10 +23,7 @@ package uk.ac.ebi.fgpt.urigen.impl;
  */
 
 import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
-import uk.ac.ebi.fgpt.urigen.model.UrigenPreference;
-import uk.ac.ebi.fgpt.urigen.model.UrigenUser;
 
-import java.net.URI;
 import java.util.Date;
 
 /**
@@ -43,7 +40,7 @@ public class SimpleUrigenEntityImpl implements UrigenEntity {
 
     private String originalUri;
 
-    private String shortForm = "";
+    private final String shortForm = "";
 
     private String label = "";
 

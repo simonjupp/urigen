@@ -15,7 +15,7 @@ import java.util.HashSet;
  */
 public class SimpleUrigenPreferencesImpl implements UrigenPreference {
 
-    private long nano_time = System.nanoTime();
+    private final long nano_time = System.nanoTime();
 
     // this should get the info it needs from the database... all it needs is a
     private String ontologyName;
@@ -94,7 +94,7 @@ public class SimpleUrigenPreferencesImpl implements UrigenPreference {
 
     }
 
-    private Collection<UrigenUserRange> userRange = new HashSet<UrigenUserRange>();
+    private final Collection<UrigenUserRange> userRange = new HashSet<>();
 
 
     public int getPreferenceId() {

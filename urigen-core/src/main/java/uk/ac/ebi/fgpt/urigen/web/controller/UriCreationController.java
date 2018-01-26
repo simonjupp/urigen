@@ -31,7 +31,7 @@ import java.util.List;
 @RequestMapping("/uris")
 public class UriCreationController {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;
@@ -145,7 +145,7 @@ public class UriCreationController {
 
 
             DataTableResponseBean response = new DataTableResponseBean();
-            List<UrigenEntity> entities = new ArrayList<UrigenEntity>(getUris());
+            List<UrigenEntity> entities = new ArrayList<>(getUris());
             response.setiTotalRecords(String.valueOf(entities.size()));
 
             response.setiDisplayLength(String.valueOf(param.iDisplayLength));

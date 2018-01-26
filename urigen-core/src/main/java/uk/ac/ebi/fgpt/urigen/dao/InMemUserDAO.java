@@ -13,11 +13,11 @@ import java.util.Map;
  */
 public class InMemUserDAO implements UserDAO {
 
-    private Map<Integer, UrigenUser> users;
+    private final Map<Integer, UrigenUser> users;
     private int id = 0;
 
     public InMemUserDAO () {
-        users = new HashMap<Integer, UrigenUser>();
+        users = new HashMap<>();
     }
 
     public UrigenUser getUser(int userId) {

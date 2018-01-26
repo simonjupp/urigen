@@ -5,13 +5,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.naming.AuthenticationException;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
 import java.util.Collection;
@@ -77,7 +74,7 @@ public class GitHubIdService {
         log.debug("fetching github id for : " + code);
         log.debug("state:" + state);
 
-        Collection<String> email = new HashSet<String>();
+        Collection<String> email = new HashSet<>();
 
         HttpURLConnection con;
 

@@ -18,13 +18,13 @@ import java.util.Set;
  */
 public class InMemAPITest extends TestCase {
 
-    PreferencesDAO pDAO = new InMemPreferencesDAO();
-    UrigenEntityDAO eDAO = new InMemUrigenEntityDAO();
-    UserDAO uDAO = new InMemUserDAO();
+    final PreferencesDAO pDAO = new InMemPreferencesDAO();
+    final UrigenEntityDAO eDAO = new InMemUrigenEntityDAO();
+    final UserDAO uDAO = new InMemUserDAO();
     UrigenManager uriGenManager;
 
-    Set<UrigenPreference> validPrefs = new HashSet<UrigenPreference>();
-    Set<UrigenUser> validUser = new HashSet<UrigenUser>();
+    final Set<UrigenPreference> validPrefs = new HashSet<>();
+    final Set<UrigenUser> validUser = new HashSet<>();
 
     UrigenUserRange userRange1;
 

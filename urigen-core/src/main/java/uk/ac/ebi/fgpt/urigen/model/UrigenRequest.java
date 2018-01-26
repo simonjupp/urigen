@@ -2,8 +2,6 @@ package uk.ac.ebi.fgpt.urigen.model;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import java.net.URI;
-
 /**
  * @author Simon Jupp
  * @date 15/12/2011

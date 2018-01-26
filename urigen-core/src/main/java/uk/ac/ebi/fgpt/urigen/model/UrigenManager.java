@@ -1,6 +1,5 @@
 package uk.ac.ebi.fgpt.urigen.model;
 
-import uk.ac.ebi.fgpt.urigen.dao.*;
 import uk.ac.ebi.fgpt.urigen.exception.*;
 import uk.ac.ebi.fgpt.urigen.impl.GeneratorTypes;
 

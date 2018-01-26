@@ -7,7 +7,7 @@ package uk.ac.ebi.fgpt.urigen.web.view;
  */
 public class ActionResponseBean {
 
-    private String statusMessage;
+    private final String statusMessage;
 
     public ActionResponseBean (String statusMessage) {
         this.statusMessage = statusMessage;

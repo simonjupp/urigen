@@ -3,11 +3,7 @@ package uk.ac.ebi.fgpt.urigen.dao;
 import uk.ac.ebi.fgpt.urigen.exception.AutoIDException;
 import uk.ac.ebi.fgpt.urigen.impl.GeneratorTypes;
 import uk.ac.ebi.fgpt.urigen.model.AbstractAutoIDGenerator;
-import uk.ac.ebi.fgpt.urigen.model.AutoIDGenerator;
-import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
 import uk.ac.ebi.fgpt.urigen.model.UrigenRequest;
-
-import java.util.UUID;
 
 /**
  * @author Simon Jupp

@@ -25,10 +25,7 @@ package uk.ac.ebi.fgpt.urigen.model;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import uk.ac.ebi.fgpt.urigen.dao.*;
 import uk.ac.ebi.fgpt.urigen.exception.AutoIDException;
-import uk.ac.ebi.fgpt.urigen.exception.PreferenceCreationException;
 import uk.ac.ebi.fgpt.urigen.exception.UrigenException;
-
-import java.util.UUID;
 
 /**
  * Author: Simon Jupp<br>

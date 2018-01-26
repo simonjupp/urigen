@@ -28,7 +28,7 @@ public class JDBCPreferencesDAO implements PreferencesDAO{
 
     private JdbcTemplate jdbcTemplate;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public Logger getLog () {
         return log;
@@ -163,7 +163,7 @@ public class JDBCPreferencesDAO implements PreferencesDAO{
     }
 
     public Collection<UrigenPreference> getAllPreferences() {
-        Set<UrigenPreference> ps = new HashSet<UrigenPreference>();
+        Set<UrigenPreference> ps = new HashSet<>();
         for (UrigenPreference p : getJdbcTemplate().query(PREF_SELECT,
                 new UrigenPreferenceMapper())) {
 
@@ -319,7 +319,7 @@ public class JDBCPreferencesDAO implements PreferencesDAO{
                     new UserRangeMapper());
         }
         catch (EmptyResultDataAccessException e) {
-            return new HashSet<UrigenUserRange>();
+            return new HashSet<>();
         }
     }
 

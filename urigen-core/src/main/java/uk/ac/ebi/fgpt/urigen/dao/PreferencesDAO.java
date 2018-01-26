@@ -31,9 +31,9 @@ public interface PreferencesDAO {
 
     UrigenPreference getPreferenceByUserRange(UrigenUserRange range);
 
-    public void setLastOntologyCheckDate(int prefId, Date date);
+    void setLastOntologyCheckDate(int prefId, Date date);
 
-    public void updateMD5checksum(int prefId, String md5);
+    void updateMD5checksum(int prefId, String md5);
 
     void removePref(UrigenPreference preference);
 }

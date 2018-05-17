@@ -1,9 +1,7 @@
 package uk.ac.ebi.fgpt.urigen.web.view;
 
 import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
-import uk.ac.ebi.fgpt.urigen.model.UrigenRequest;
 
-import java.net.URI;
 import java.util.Date;
 
 /**

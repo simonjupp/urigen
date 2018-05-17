@@ -1,7 +1,6 @@
 package uk.ac.ebi.fgpt.urigen.dao;
 
 import uk.ac.ebi.fgpt.urigen.exception.AutoIDException;
-import uk.ac.ebi.fgpt.urigen.exception.UrigenException;
 import uk.ac.ebi.fgpt.urigen.model.UrigenEntity;
 
 import java.util.*;
@@ -13,11 +12,11 @@ import java.util.*;
  */
 public class InMemUrigenEntityDAO implements UrigenEntityDAO{
 
-    private LinkedHashMap<Integer, UrigenEntity> entities;
+    private final LinkedHashMap<Integer, UrigenEntity> entities;
     private int id = 0;
 
     public InMemUrigenEntityDAO () {
-        entities = new LinkedHashMap<Integer, UrigenEntity>();
+        entities = new LinkedHashMap<>();
     }
 
     public UrigenEntity getEntityById(int id) {
@@ -25,13 +24,13 @@ public class InMemUrigenEntityDAO implements UrigenEntityDAO{
     }
 
     public Collection<UrigenEntity> getAllEntities() {
-        ArrayList v = new ArrayList<UrigenEntity>(entities.values());
+        ArrayList v = new ArrayList<>(entities.values());
         Collections.reverse(v);
         return v;
     }
 
     public Collection<UrigenEntity> getAllEntitiesByUser(int id) {
-        Set<UrigenEntity> eps = new HashSet<UrigenEntity>();
+        Set<UrigenEntity> eps = new HashSet<>();
         for (UrigenEntity e : entities.values()) {
 
             if (e.getUserId() == id) {
@@ -43,7 +42,7 @@ public class InMemUrigenEntityDAO implements UrigenEntityDAO{
 
     public Collection<UrigenEntity> getAllEntitiesByPreferenceId(int id) {
 
-        Set<UrigenEntity> eps = new HashSet<UrigenEntity>();
+        Set<UrigenEntity> eps = new HashSet<>();
         for (UrigenEntity e : entities.values()) {
 
             if (e.getPreferencesId() == id) {
@@ -59,18 +58,18 @@ public class InMemUrigenEntityDAO implements UrigenEntityDAO{
 
     public UrigenEntity saveUrigenEntity(UrigenEntity entity) throws AutoIDException {
 
-        if (getEntityByUri(entity.getGeneratedUri().toString()) == null) {
+        if (getEntityByUri(entity.getGeneratedUri()) == null) {
             entity.setId(id);
             entities.put(id, entity);
             id++;
             return entity;
         }
-        throw new AutoIDException("URI already exists in Urigen database, please try again: " + entity.getGeneratedUri().toString());
+        throw new AutoIDException("URI already exists in Urigen database, please try again: " + entity.getGeneratedUri());
     }
 
     public UrigenEntity getEntityByUri(String uri) {
         for (UrigenEntity e : entities.values()) {
-            if (e.getGeneratedUri().toString().equals(uri)) {
+            if (e.getGeneratedUri().equals(uri)) {
                 return e;
             }
         }

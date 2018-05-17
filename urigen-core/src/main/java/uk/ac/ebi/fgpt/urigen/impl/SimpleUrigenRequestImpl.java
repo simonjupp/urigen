@@ -2,8 +2,6 @@ package uk.ac.ebi.fgpt.urigen.impl;
 
 import uk.ac.ebi.fgpt.urigen.model.UrigenRequest;
 
-import java.net.URI;
-
 /**
  * @author Simon Jupp
  * @date 16/12/2011
@@ -11,11 +9,11 @@ import java.net.URI;
  */
 public class SimpleUrigenRequestImpl implements UrigenRequest{
 
-    private int userId;
-    private String localUri;
-    private int preferencesId;
-    private String label;
-    private String comment;
+    private final int userId;
+    private final String localUri;
+    private final int preferencesId;
+    private final String label;
+    private final String comment;
 
     public SimpleUrigenRequestImpl(int userId, String localUri, int preferencesId, String label, String comment) {
         this.userId = userId;

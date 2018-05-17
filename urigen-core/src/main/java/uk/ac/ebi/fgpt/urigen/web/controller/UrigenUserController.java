@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import uk.ac.ebi.fgpt.urigen.exception.UserCreateException;
 import uk.ac.ebi.fgpt.urigen.model.UrigenUser;
 import uk.ac.ebi.fgpt.urigen.service.BrowserIdService;
@@ -40,7 +37,7 @@ public class UrigenUserController {
     private UrigenUserService userService;
     private GitHubIdService gitHubIdService;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     protected Logger getLog() {
         return log;
@@ -73,7 +70,7 @@ public class UrigenUserController {
     public @ResponseBody
     Collection<UserBean> getUsers( @RequestParam(value = "restApiKey", required = false) String restApiKey) {
 
-        Set<UserBean> users = new HashSet<UserBean>();
+        Set<UserBean> users = new HashSet<>();
         for (UrigenUser u : getUserService().getUsers()) {
 
             UserBean ub = getUserByRestApiKey(restApiKey);

@@ -3,14 +3,11 @@ package uk.ac.ebi.fgpt.urigen.service;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.util.UrlPathHelper;
 import uk.ac.ebi.fgpt.urigen.web.view.BrowserIdResponseBean;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.*;
-import java.util.Properties;
 
 /**
  * @author Simon Jupp

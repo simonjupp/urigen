@@ -51,13 +51,13 @@ public interface UrigenPreference {
 
     Collection<UrigenUserRange> getAllUserRange();
 
-    public Date getLastOntologyCheckDate();
+    Date getLastOntologyCheckDate();
 
-    public String getOntologyMD5checksum();
+    String getOntologyMD5checksum();
 
-    public void setLastOntologyCheckDate(Date date);
+    void setLastOntologyCheckDate(Date date);
 
-    public void setOntologyMD5checksum(String md5);
+    void setOntologyMD5checksum(String md5);
 
 
 }

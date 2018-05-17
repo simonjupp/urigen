@@ -18,7 +18,7 @@ import java.util.concurrent.Semaphore;
  */
 public abstract class AbstractAutoIDGenerator implements AutoIDGenerator{
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final Semaphore semaphore = new Semaphore(1);
 

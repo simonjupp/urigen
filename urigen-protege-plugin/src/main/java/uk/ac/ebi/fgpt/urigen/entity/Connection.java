@@ -7,16 +7,15 @@ import uk.ac.ebi.fgpt.urigen.web.view.UrigenEntityBean;
 import uk.ac.ebi.fgpt.urigen.web.view.UrigenRequestBean;
 import uk.ac.ebi.fgpt.urigen.web.view.UserBean;
 
-public abstract interface Connection
-{
-  public abstract UserBean getUrigenUserByApiKey(String paramString)
-    throws UrigenException;
+public interface Connection {
+    UserBean getUrigenUserByApiKey(String paramString)
+            throws UrigenException;
 
-  public abstract UrigenEntityBean getNewUri(UrigenRequestBean paramUrigenRequestBean, String paramString)
-    throws UrigenException;
+    UrigenEntityBean getNewUri(UrigenRequestBean paramUrigenRequestBean, String paramString)
+            throws UrigenException;
 
-  public abstract PreferenceBean getUrigenPreference(IRI paramIRI)
-    throws UrigenException;
+    PreferenceBean getUrigenPreference(IRI paramIRI)
+            throws UrigenException;
 }
 
 /* Location:           /Users/jupp/Downloads/org.protege.urigen.jar

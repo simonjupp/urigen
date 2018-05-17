@@ -4,8 +4,6 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
-import java.net.URI;
-
 /**
  * @author Simon Jupp
  * @date 03/01/2012

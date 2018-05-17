@@ -8,7 +8,7 @@ import uk.ac.ebi.fgpt.urigen.model.UrigenUser;
  * Functional Genomics Group EMBL-EBI
  */
 public class RestApiKeyResponseBean {
-    private UrigenUser user;
+    private final UrigenUser user;
 
     public RestApiKeyResponseBean(UrigenUser user) {
         this.user = user;

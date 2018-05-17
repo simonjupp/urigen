@@ -1,6 +1,6 @@
 package uk.ac.ebi.fgpt.urigen.web.view;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import uk.ac.ebi.fgpt.urigen.model.AutoIDGenerator;
 import uk.ac.ebi.fgpt.urigen.model.UrigenPreference;
 import uk.ac.ebi.fgpt.urigen.model.UrigenUserRange;
@@ -33,7 +33,7 @@ public class PreferenceBean implements UrigenPreference {
     private Date lastChecked;
     private String md5;
 
-    private Collection<UrigenUserRange> allUserRange = new HashSet<UrigenUserRange>();
+    private final Collection<UrigenUserRange> allUserRange = new HashSet<>();
 
     private String autoIdGenerator;
 
@@ -253,9 +253,7 @@ public class PreferenceBean implements UrigenPreference {
 //    }
 //
     public void setAllUserRange(Collection<UrigenUserRangeBean> allUserRange) {
-        for (UrigenUserRangeBean b : allUserRange) {
-            this.allUserRange.add(b);
-        }
+        this.allUserRange.addAll(allUserRange);
     }
 //
 

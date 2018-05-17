@@ -340,7 +340,7 @@ function displayUserCallback() {
         var id = users[i].id;
         var userName = users[i].userName;
         var email = users[i].email;
-        var apiKey = users[i].apiKey
+        var apiKey = users[i].apiKey;
         var admin = users[i].admin;
 
         var dataItem = [
@@ -595,8 +595,8 @@ function submitNewPrefs () {
             if (i>1) {
                 rangeJson = rangeJson + ",";
             }
-            var cells = new Array();
-            cells = rows[i].getElementsByTagName("td")
+            var cells = [];
+            cells = rows[i].getElementsByTagName("td");
 
             var selectedBox = cells[0].firstChild;
             var uid = selectedBox.value;
@@ -719,7 +719,7 @@ function prefEdit(id) {
             url: 'api/preferences/' + id,
             dataType: 'json',
             success: function(json) {
-                setPrefsPanel(json)
+                setPrefsPanel(json);
                 $('#prefs-submit-image').hide();
 
             },
@@ -815,7 +815,7 @@ function removeUserRangeRow(obj) {
 function setPrefsPanel(json) {
 
     $("#pref-hidden-id").val(json.preferenceId);
-    $("#hidden-last-id").val(json.lastIdInSequence)
+    $("#hidden-last-id").val(json.lastIdInSequence);
     $("#pref-name").val(json.ontologyName);
     $('#ontology-uri').val(json.ontologyUri);
     $('#ontology-url').val(json.ontologyPhysicalUri);

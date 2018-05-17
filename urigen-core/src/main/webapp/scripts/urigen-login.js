@@ -12,7 +12,7 @@ var lookupUrl = "api/users/query";
 function autoUserLogin() {
 
     // do a cleanup of existing forms
-    clearLoginForms()
+    clearLoginForms();
 
     // see if there is a cookie
 
@@ -47,7 +47,7 @@ function autoUserLogin() {
         
             }).fail( function(jqXHR) {
                 if (jqXHR.status == 404) {
-                    console.log('user not found')
+                    console.log('user not found');
                     $("#invalid-login").show();
         
                 }
@@ -91,7 +91,7 @@ function userLogin() {
     var state = Math.floor(Math.random() * 200000);
     var now = new Date();
     now.setDate(now.getDate() + 1);
-    setCookie("urigen-state", state, now )
+    setCookie("urigen-state", state, now );
 
     $.ajax({
         url: 'api/clientId',
@@ -214,7 +214,7 @@ function createUserIfNoneExists(userJson) {
             success:        function (data) {
 
                 // hide the registration overlay
-                clearLoginForms()
+                clearLoginForms();
 
                 // if admin creation, then also log him in
 //                if (data.userName == "admin") {

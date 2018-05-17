@@ -15,7 +15,7 @@ import java.util.Collection;
  */
 public abstract class AbstractUrigenManager implements UrigenManager {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private PreferencesDAO preferenceDAO;
     private UrigenEntityDAO urigenEntityDAO;
@@ -142,7 +142,7 @@ public abstract class AbstractUrigenManager implements UrigenManager {
 
             if (p.getCheckSource()) {
                 if (ontoloyDAO.ontologyContainsUri(p.getOntologyUri(), uri_fragment.getGeneratedUri())) {
-                    throw new OntologyClashException("The new URI already exists in the source ontology: " + uri_fragment.getGeneratedUri().toString());
+                    throw new OntologyClashException("The new URI already exists in the source ontology: " + uri_fragment.getGeneratedUri());
                 }
             }
             return uri_fragment;

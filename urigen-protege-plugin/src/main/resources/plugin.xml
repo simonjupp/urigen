@@ -23,4 +23,13 @@
     <!--<class value="uk.ac.ebi.fgpt.urigen.entity.MyEditorKitHook" />-->
     <!--</extension>-->
 
+    <extension id="menu.RenameEntitiesWithUrigenAction"
+               point="org.protege.editor.core.application.EditorKitMenuAction">
+        <name value="Assign URIs from Urigen..."/>
+        <class value="uk.ac.ebi.fgpt.urigen.action.RenameEntitiesWithUrigenAction"/>
+        <toolTip value="Change the URI of entities using a Urigen server"/>
+        <path value="org.protege.editor.owl.menu.Refactor/SlotA-D"/>
+        <editorKitId value="OWLEditorKit"/>
+    </extension>
+
 </plugin>

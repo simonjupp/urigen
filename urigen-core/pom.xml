@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>urigen-core</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <build>
         <finalName>urigen</finalName>
